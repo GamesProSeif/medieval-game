@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System;
 using UnityEditor;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,7 +17,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerBody;
     private Collider playerCollider;
     public Transform Orientation;
-
+    public Transform targetLookAt;
+    public ThirdPersonCamera Camera;
 
     // Changable Variables
     public float Speed;
@@ -39,7 +41,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+   
         playerBody = GetComponent<Rigidbody>();
         playerCollider = GetComponent<Collider>();
         isGrounded = true;
@@ -48,6 +50,7 @@ public class PlayerController : MonoBehaviour
     // FixedUpdate is called before the Update Method
     private void FixedUpdate()
     {
+       
         MovePlayer();
     }
     // Update is called once per frame
@@ -63,20 +66,32 @@ public class PlayerController : MonoBehaviour
 
         // Speed control
         speedControl();
-
+    
     }
+ 
     void MovePlayer()
     {
-        // Getting the Direction of the player
-        Vector3 moveDir = Orientation.forward * PlayerMovementInput.z + Orientation.right * PlayerMovementInput.x;
-        // Moving the player in set direction
-        playerBody.AddForce(moveDir.normalized * Speed * 10f, ForceMode.Force);
-        // Checking if the player is on the ground before performing another Jump
+        if (Camera.currentCamera == ThirdPersonCamera.cameraStyle.Explore)
+        {
+            // Getting the Direction of the player
+            Vector3 moveDir = Orientation.forward * PlayerMovementInput.z + Orientation.right * PlayerMovementInput.x;
+            // Moving the player in set direction
+            playerBody.AddForce(moveDir.normalized * Speed * 10f, ForceMode.Force);
+            // Checking if the player is on the ground before performing another Jump
+            
+        }
+        else if (Camera.currentCamera == ThirdPersonCamera.cameraStyle.Combat)
+        {
+            Vector3 moveDir = transform.TransformDirection(PlayerMovementInput) * Speed;
+            playerBody.velocity = new Vector3(moveDir.x, playerBody.velocity.y, moveDir.z);
+        }
+
+
         if (Input.GetKey(KeyCode.Space) && isGrounded)
         {
             // Adding force to the player in the y axis
             playerBody.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
-            isGrounded=false;
+            isGrounded = false;
         }
     }
 
@@ -88,7 +103,7 @@ public class PlayerController : MonoBehaviour
         {
             // Checking if the velocity is higher than the speed Set , if true , limiting the speed to the move speed
             Vector3 limitedVelocity = flatVelocity.normalized * Speed;
-            playerBody.velocity = new Vector3(limitedVelocity.x, playerBody.velocity.y, limitedVelocity.z); 
+            playerBody.velocity = new Vector3(limitedVelocity.x, playerBody.velocity.y, limitedVelocity.z);
         }
     }
 
