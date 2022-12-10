@@ -25,8 +25,15 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public float groundDrag;
 
-    // Proof Player is on ground
+    [Header("Player Step Climb")]
+    public GameObject stepRayLower;
+    public GameObject stepRayUpper;
+    public float stepHeight = 0.3f;
+    public float stepSmooth = 0.1f;
+
+    // Bools
     bool isGrounded;
+   public bool isGameOver;
 
 
     // Stats
@@ -38,20 +45,25 @@ public class PlayerController : MonoBehaviour
     
 
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
    
         playerBody = GetComponent<Rigidbody>();
         playerCollider = GetComponent<Collider>();
         isGrounded = true;
 
+        stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
+
+
     }
     // FixedUpdate is called before the Update Method
     private void FixedUpdate()
     {
-       
-        MovePlayer();
+        if (!isGameOver)
+        {
+            MovePlayer();
+            stepClimb();
+        }
     }
     // Update is called once per frame
     void Update()
@@ -95,6 +107,39 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void stepClimb()
+    {
+        RaycastHit hitLower;
+       if(Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.1f))
+        {
+            RaycastHit hitUpper;
+            if(!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.forward), out hitUpper,0.2f))
+            {
+                playerBody.position -= new Vector3(0f, -stepSmooth, 0f);
+            }
+        }
+        RaycastHit hitLowerMinus45;
+        if(Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(-1.5f, 0f, 1f), out hitLowerMinus45,0.1f))
+        {
+            RaycastHit hitUpperMinus45;
+            if(!Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(-1.5f, 0f, 1f), out hitUpperMinus45, 0.2f))
+            {
+                playerBody.position = new Vector3(0f, -stepSmooth, 0f);
+            }
+
+        }
+        RaycastHit hitLower45;
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(1.5f, 0f, 1f), out hitLower45, 0.1f))
+        {
+            RaycastHit hitUpper45;
+            if (!Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(1.5f, 0f, 1f), out hitUpper45, 0.2f))
+            {
+                playerBody.position = new Vector3(0f, -stepSmooth, 0f);
+            }
+
+        }
+    }
+
     void speedControl()
     {
         // Calculating the Velocity of the player 
@@ -119,7 +164,12 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             Exp++;
         }
-                }
+    }
+
+   public void GameOver()
+    {
+        isGameOver = true;
+    }
 
 
 }

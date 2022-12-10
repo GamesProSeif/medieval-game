@@ -7,6 +7,7 @@ using UnityEngine;
 public class ThirdPersonCamera : MonoBehaviour
 {
     // Referances
+    public PlayerController controller;
     public Transform orientation;
     public Transform player;
     public Transform combatLookAt;
@@ -29,39 +30,47 @@ public class ThirdPersonCamera : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         currentCamera = cameraStyle.Explore;
+        controller = GameObject.Find("PlayerObj").gameObject.GetComponent<PlayerController>();
 
 
     }
 
     private void FixedUpdate()
     {
-        // Explore camera setup
-        if (currentCamera == cameraStyle.Explore)
+        if (!controller.isGameOver)
         {
-            // Calculate Vector between player and Camera
-            Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
-            orientation.forward = viewDir.normalized;
+            // Explore camera setup
+            if (currentCamera == cameraStyle.Explore)
+            {
+                // Calculate Vector between player and Camera
+                Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
+                orientation.forward = viewDir.normalized;
 
-            //rotate player
-            float horizontalInput = Input.GetAxis("Horizontal");
-            float verticalInput = Input.GetAxis("Vertical");
-            Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
-            // If there is input rotate smoothly
-            if (inputDir != Vector3.zero)
-                player.forward = Vector3.Slerp(player.forward, inputDir.normalized, Time.deltaTime *  rotationSpeed);
+                //rotate player
+                float horizontalInput = Input.GetAxis("Horizontal");
+                float verticalInput = Input.GetAxis("Vertical");
+                Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
+                // If there is input rotate smoothly
+                if (inputDir != Vector3.zero)
+                    player.forward = Vector3.Slerp(player.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+            }
+
+            // Combat Camera setup
+            else if (currentCamera == cameraStyle.Combat)
+            {
+                Vector3 dirtoLookAt = combatLookAt.position - new Vector3(transform.position.x, combatLookAt.position.y, transform.position.z);
+                orientation.forward = dirtoLookAt.normalized;
+                player.forward = dirtoLookAt.normalized;
+
+            }
+            switchCamera();
         }
-
-        // Combat Camera setup
-        else if (currentCamera == cameraStyle.Combat)
+        else
         {
-            Vector3 dirtoLookAt = combatLookAt.position - new Vector3(transform.position.x, combatLookAt.position.y, transform.position.z);
-            orientation.forward = dirtoLookAt.normalized;
-            player.forward = dirtoLookAt.normalized;
-
+            combatCam.gameObject.SetActive(false);
+            basicCam.gameObject.SetActive(false);
         }
-        switchCamera();
     }
-
 
     // Update is called once per frame
     void Update()
