@@ -30,7 +30,7 @@ public class ThirdPersonCamera : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         currentCamera = cameraStyle.Explore;
-        controller = GameObject.Find("PlayerObj").gameObject.GetComponent<PlayerController>();
+        controller = GameObject.Find("Player").gameObject.GetComponent<PlayerController>();
 
 
     }
@@ -39,6 +39,11 @@ public class ThirdPersonCamera : MonoBehaviour
     {
         if (!controller.isGameOver)
         {
+            //combatCam.gameObject.SetActive(true);
+            //currentCamera = cameraStyle.Combat;
+            //Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = false;
+
             // Explore camera setup
             if (currentCamera == cameraStyle.Explore)
             {
@@ -58,18 +63,21 @@ public class ThirdPersonCamera : MonoBehaviour
             // Combat Camera setup
             else if (currentCamera == cameraStyle.Combat)
             {
-                Vector3 dirtoLookAt = combatLookAt.position - new Vector3(transform.position.x, combatLookAt.position.y, transform.position.z);
+                Vector3 dirtoLookAt = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
                 orientation.forward = dirtoLookAt.normalized;
                 player.forward = dirtoLookAt.normalized;
 
             }
             switchCamera();
         }
-        else
+        else if (controller.isGameOver)
         {
             combatCam.gameObject.SetActive(false);
             basicCam.gameObject.SetActive(false);
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
         }
+        
     }
 
     // Update is called once per frame

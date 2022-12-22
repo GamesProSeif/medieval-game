@@ -6,12 +6,18 @@ using UnityEngine.UIElements;
 using System;
 using UnityEditor;
 using UnityEngine.EventSystems;
+using System.Security.Cryptography;
 
 public class PlayerController : MonoBehaviour
 {
 
     Vector3 PlayerMovementInput;
-
+     //public TextMeshProUGUI text;
+   // public AudioSource audi;
+   // public GameObject layout;
+   // public Button button;
+    // public GameObject zero;
+     // public GameObject one;
 
     // Wanted References
     private Rigidbody playerBody;
@@ -51,10 +57,12 @@ public class PlayerController : MonoBehaviour
         playerBody = GetComponent<Rigidbody>();
         playerCollider = GetComponent<Collider>();
         isGrounded = true;
-
+      //  layout.SetActive(false);
+       // zero.transform.position = transform.gameObject.transform.position;
+       // one.transform.position = GameObject.Find("Enemy").gameObject.transform.position;
         stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
 
-
+       // audi.Stop();
     }
     // FixedUpdate is called before the Update Method
     private void FixedUpdate()
@@ -83,22 +91,13 @@ public class PlayerController : MonoBehaviour
  
     void MovePlayer()
     {
-        if (Camera.currentCamera == ThirdPersonCamera.cameraStyle.Explore)
-        {
+        
+        
             // Getting the Direction of the player
             Vector3 moveDir = Orientation.forward * PlayerMovementInput.z + Orientation.right * PlayerMovementInput.x;
             // Moving the player in set direction
             playerBody.AddForce(moveDir.normalized * Speed * 10f, ForceMode.Force);
             // Checking if the player is on the ground before performing another Jump
-            
-        }
-        else if (Camera.currentCamera == ThirdPersonCamera.cameraStyle.Combat)
-        {
-            Vector3 moveDir = transform.TransformDirection(PlayerMovementInput) * Speed;
-            playerBody.velocity = new Vector3(moveDir.x, playerBody.velocity.y, moveDir.z);
-        }
-
-
         if (Input.GetKey(KeyCode.Space) && isGrounded)
         {
             // Adding force to the player in the y axis
@@ -163,12 +162,23 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             Exp++;
+           // audi.Play();
+          // text.gameObject.SetActive(true);
         }
     }
 
    public void GameOver()
     {
         isGameOver = true;
+       // layout.SetActive(true);
+    }
+
+    public void restartGame()
+    {
+        isGameOver = false;
+       // gameObject.transform.position = zero.transform.position;
+       // GameObject.Find("Enemy").gameObject.transform.position = one.transform.position;
+       // layout.SetActive(false);
     }
 
 
