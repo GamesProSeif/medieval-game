@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public Transform player;
     public Rigidbody rb;
     public LayerMask Ground, Player;
+    public int health;
     public float startWaitTime = 4;
     public float timeToRotate = 2;
     public float walkSpeed;
@@ -32,9 +33,9 @@ public class Enemy : MonoBehaviour
    
     void Awake()
     {
-        player = GameObject.Find("PlayerObj").transform;
+        // player = GameObject.Find("PlayerObj").transform;
         agent = GetComponent<NavMeshAgent>();
-        controller = GameObject.Find("PlayerObj").gameObject.GetComponent<PlayerController>();
+        // controller = GameObject.Find("PlayerObj").gameObject.GetComponent<PlayerController>();
         m_WaitTime = startWaitTime;
 
     }
@@ -68,6 +69,14 @@ public class Enemy : MonoBehaviour
 
 
 
+    }
+
+    public void takeDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+            Destroy(gameObject);
     }
 
 

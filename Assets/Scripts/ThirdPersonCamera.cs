@@ -29,10 +29,8 @@ public class ThirdPersonCamera : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        currentCamera = cameraStyle.Explore;
-        controller = GameObject.Find("Player").gameObject.GetComponent<PlayerController>();
-
-
+        currentCamera = cameraStyle.Combat;
+        // controller = GameObject.Find("Player").gameObject.GetComponent<PlayerController>();
     }
 
     private void FixedUpdate()
