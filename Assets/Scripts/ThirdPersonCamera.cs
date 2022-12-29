@@ -27,12 +27,19 @@ public class ThirdPersonCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         currentCamera = cameraStyle.Explore;
         controller = GameObject.Find("Player").gameObject.GetComponent<PlayerController>();
         rb = GameObject.Find("Player").gameObject.GetComponent<Rigidbody>();
         combatLookAt = GameObject.Find("LookAt").gameObject.transform;
         orientation = GameObject.Find("Orientation").gameObject.transform;
         player = GameObject.Find("Player").gameObject.transform;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        currentCamera = cameraStyle.Combat;
+        // controller = GameObject.Find("Player").gameObject.GetComponent<PlayerController>();
+
     }
 
     private void FixedUpdate()

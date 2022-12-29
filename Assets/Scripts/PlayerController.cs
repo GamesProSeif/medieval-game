@@ -12,12 +12,15 @@ public class PlayerController : MonoBehaviour
 {
 
     Vector3 PlayerMovementInput;
+
      //public TextMeshProUGUI text;
    // public AudioSource audi;
     //public GameObject layout;
     //public Button button;
     // public GameObject zero;
     //  public GameObject one;
+
+  
 
     // Wanted References
     private Rigidbody playerBody;
@@ -40,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
     // Bools
     bool isGrounded;
-   public bool isGameOver;
+    public bool isGameOver;
 
 
     // Stats
@@ -54,17 +57,18 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-   
         playerBody = GetComponent<Rigidbody>();
         playerCollider = GetComponent<Collider>();
         isGrounded = true;
+
       //  layout.SetActive(false);
        // zero.transform.position = transform.gameObject.transform.position;
       //  one.transform.position = GameObject.Find("Enemy").gameObject.transform.position;
+
         stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
        // anim = GetComponent<Animator>();  
 
-       // audi.Stop();
+        // audi.Stop();
     }
     // FixedUpdate is called before the Update Method
     private void FixedUpdate()
@@ -176,13 +180,16 @@ public class PlayerController : MonoBehaviour
 
    public void GameOver()
     {
+
         isGameOver = true;
         //layout.SetActive(true);
+
     }
 
     public void restartGame()
     {
         isGameOver = false;
+
       //  gameObject.transform.position = zero.transform.position;
        // GameObject.Find("Enemy").gameObject.transform.position = one.transform.position;
        // layout.SetActive(false);

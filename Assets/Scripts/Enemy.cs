@@ -12,7 +12,10 @@ public class Enemy : MonoBehaviour
     public Vector3 lastPlayerPos;
     public Rigidbody rb;
     public LayerMask Ground, Player;
+
     public LayerMask obsticle;
+    public int health;
+
     public float startWaitTime = 4;
     public float timeToRotate = 2;
     public float walkSpeed;
@@ -35,11 +38,13 @@ public class Enemy : MonoBehaviour
 
     void Awake()
     {
+
         player = GameObject.Find("LookAt").transform;
         agent = GetComponent<NavMeshAgent>();
         controller = GameObject.Find("Player").gameObject.GetComponent<PlayerController>();
         angle = 45;
         lastPlayerPos = Vector3.zero;
+
 
     }
 
@@ -90,6 +95,14 @@ public class Enemy : MonoBehaviour
         }
         if (true)
             rb.drag = controller.groundDrag;
+    }
+
+    public void takeDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+            Destroy(gameObject);
     }
 
 
