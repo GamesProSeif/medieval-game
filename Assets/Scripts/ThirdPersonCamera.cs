@@ -12,7 +12,7 @@ public class ThirdPersonCamera : MonoBehaviour
     public Transform player;
     public Transform combatLookAt;
     public CinemachineFreeLook basicCam;
-    public CinemachineFreeLook combatCam;
+    //public CinemachineFreeLook combatCam;
     public Rigidbody rb;
     public Vector3 inputDir;
     
@@ -27,12 +27,12 @@ public class ThirdPersonCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         currentCamera = cameraStyle.Explore;
         controller = GameObject.Find("Player").gameObject.GetComponent<PlayerController>();
-
-
+        rb = GameObject.Find("Player").gameObject.GetComponent<Rigidbody>();
+        combatLookAt = GameObject.Find("LookAt").gameObject.transform;
+        orientation = GameObject.Find("Orientation").gameObject.transform;
+        player = GameObject.Find("Player").gameObject.transform;
     }
 
     private void FixedUpdate()
@@ -40,9 +40,9 @@ public class ThirdPersonCamera : MonoBehaviour
         if (!controller.isGameOver)
         {
             //combatCam.gameObject.SetActive(true);
-            //currentCamera = cameraStyle.Combat;
-            //Cursor.lockState = CursorLockMode.Locked;
-            //Cursor.visible = false;
+            currentCamera = cameraStyle.Explore;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
 
             // Explore camera setup
             if (currentCamera == cameraStyle.Explore)
@@ -68,11 +68,11 @@ public class ThirdPersonCamera : MonoBehaviour
                 player.forward = dirtoLookAt.normalized;
 
             }
-            switchCamera();
+         //   switchCamera();
         }
         else if (controller.isGameOver)
         {
-            combatCam.gameObject.SetActive(false);
+           // combatCam.gameObject.SetActive(false);
             basicCam.gameObject.SetActive(false);
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
@@ -85,23 +85,23 @@ public class ThirdPersonCamera : MonoBehaviour
     {
     }
     // Switching between the two cameras
-    void switchCamera()
-    {
-        if(Input.GetKey(KeyCode.V))
-        {
-            if(currentCamera == cameraStyle.Explore)
-            {
-                basicCam.gameObject.SetActive(false);
-                combatCam.gameObject.SetActive(true);
-                currentCamera = cameraStyle.Combat;
+    //void switchCamera()
+    //{
+    //    if(Input.GetKey(KeyCode.V))
+    //    {
+    //        if(currentCamera == cameraStyle.Explore)
+    //        {
+    //            basicCam.gameObject.SetActive(false);
+    //            //combatCam.gameObject.SetActive(true);
+    //            currentCamera = cameraStyle.Combat;
 
-            }
-            else if (currentCamera == cameraStyle.Combat)
-            {
-                basicCam.gameObject.SetActive(true);
-                combatCam.gameObject.SetActive(false);
-                currentCamera = cameraStyle.Explore;
-            }
-        }
-    }
+    //        }
+    //        else if (currentCamera == cameraStyle.Combat)
+    //        {
+    //            basicCam.gameObject.SetActive(true);
+    //           // combatCam.gameObject.SetActive(false);
+    //            currentCamera = cameraStyle.Explore;
+    //        }
+    //    }
+    //}
 }
