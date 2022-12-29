@@ -9,9 +9,13 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent agent;
     public PlayerController controller;
     public Transform player;
+    public Vector3 lastPlayerPos;
     public Rigidbody rb;
     public LayerMask Ground, Player;
+
+    public LayerMask obsticle;
     public int health;
+
     public float startWaitTime = 4;
     public float timeToRotate = 2;
     public float walkSpeed;
@@ -28,47 +32,69 @@ public class Enemy : MonoBehaviour
 
     //stats
     public float sightRange, attackRange;
-    public float m_WaitTime;
-    public bool playerInSightRange, playerInAttackRange;
-   
+    public float m_WaitTime, m_RotateTime;
+    public float angle;
+    public bool playerInSightRange, playerInAttackRange, wasChasing;
+
     void Awake()
     {
-        // player = GameObject.Find("PlayerObj").transform;
+
+        player = GameObject.Find("LookAt").transform;
         agent = GetComponent<NavMeshAgent>();
-        // controller = GameObject.Find("PlayerObj").gameObject.GetComponent<PlayerController>();
-        m_WaitTime = startWaitTime;
+        controller = GameObject.Find("Player").gameObject.GetComponent<PlayerController>();
+        angle = 45;
+        lastPlayerPos = Vector3.zero;
+
 
     }
-
 
 
     // Update is called once per frame
     void Update()
     {
-        if(!controller.isGameOver)
+        if (!controller.isGameOver)
         {
 
-            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, Player);
+            RoundEnviroment();
+
+           // playerInSightRange = Physics.CheckSphere(transform.position, sightRange, Player);
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, Player);
             //Check for sight and attack range
-            if(!playerInSightRange && !playerInAttackRange)
+            if (!playerInSightRange && !playerInAttackRange)
             {
-                Patrol();
+                lastPlayerPos = player.position;
+                if (m_RotateTime > 0)
+                {
+                    transform.LookAt(player);
+                    m_RotateTime -= Time.deltaTime;
+                    stopMove();
+                }
+                else
+                {
+                    if (wasChasing)
+                    {
+                        m_WaitTime = 2f;
+                        lookingForPlayer(lastPlayerPos);
+                    }
+                    Patrol();
+            
+                }
             }
             else if (playerInSightRange && !playerInAttackRange)
             {
-                ChasePlayer();
+                if (m_WaitTime >= 0)
+                {
+                    m_WaitTime = 0;
+                    ChasePlayer();
+                }
             }
-            else if(playerInSightRange && playerInAttackRange)
+            else if (playerInSightRange && playerInAttackRange)
             {
                 AttackPlayer();
             }
         }
         if (true)
             rb.drag = controller.groundDrag;
-
-
-
     }
 
     public void takeDamage(int damage)
@@ -80,25 +106,12 @@ public class Enemy : MonoBehaviour
     }
 
 
-    private void startMove()
-    {
-        agent.isStopped = false;
-        if (!playerInSightRange && !playerInAttackRange)
-            agent.speed = walkSpeed;
-        else if (playerInSightRange && !playerInAttackRange)
-            agent.speed = runSpeed;
-    }
-    private void stopMove()
-    {
-        agent.isStopped = true;
-        agent.speed = 0;
-    }
-
     private void Patrol()
     {
+        startMove(walkSpeed);
         if (!walkPointSet)
             generatePoint();
-        else if(walkPointSet)
+        else if (walkPointSet)
         {
             agent.SetDestination(walkPoint);
         }
@@ -112,9 +125,8 @@ public class Enemy : MonoBehaviour
             if (m_WaitTime <= 0)
             {
                 walkPointSet = false;
-                startMove();
-                m_WaitTime = startWaitTime;
-                
+                startMove(walkSpeed);
+
             }
             else
             {
@@ -122,11 +134,12 @@ public class Enemy : MonoBehaviour
                 m_WaitTime -= Time.deltaTime;
             }
         }
-            
+
     }
-    
+
     private void generatePoint()
     {
+        m_WaitTime = startWaitTime;
         float randomZ = Random.Range(-walkPointRange, +walkPointRange);
         float randomX = Random.Range(-walkPointRange, +walkPointRange);
 
@@ -137,9 +150,15 @@ public class Enemy : MonoBehaviour
     }
     private void ChasePlayer()
     {
+        Vector3 dirToplayer = (transform.position - player.position).normalized;
+        walkPointSet = false;
+        m_RotateTime = timeToRotate;
         agent.SetDestination(player.position);
         transform.LookAt(player);
-        startMove();
+        startMove(runSpeed);
+        wasChasing = true;
+
+
     }
     private void AttackPlayer()
     {
@@ -148,7 +167,7 @@ public class Enemy : MonoBehaviour
         agent.SetDestination(transform.position);
         transform.LookAt(player);
 
-        if(!alreadyAttacked)
+        if (!alreadyAttacked)
         {
             //code of attack
 
@@ -160,6 +179,32 @@ public class Enemy : MonoBehaviour
     {
         alreadyAttacked = false;
     }
+    private void startMove(float s)
+    {
+        agent.isStopped = false;
+        agent.speed = s;
+    }
+    private void stopMove()
+    {
+        agent.isStopped = true;
+        agent.speed = 0;
+    }
+
+    private void lookingForPlayer(Vector3 p)
+    {
+        agent.SetDestination(p);
+        if (m_WaitTime > 0 && Vector3.Distance(transform.position, p) <= 0.3)
+        {
+            stopMove();
+            m_WaitTime -= Time.deltaTime;
+        }
+        else wasChasing = false;
+       
+
+    }
+
+
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -167,6 +212,29 @@ public class Enemy : MonoBehaviour
         {
             controller.GameOver();
             agent.isStopped = true;
+        }
+    }
+
+    void RoundEnviroment()
+    {
+        Collider[] playerInRange = Physics.OverlapSphere(transform.position, sightRange, Player);  
+
+        for (int i = 0; i < playerInRange.Length; i++)
+        {
+            Transform player = playerInRange[i].transform;
+            Vector3 dirToPlayer = (player.position - transform.position).normalized;
+            if (Vector3.Angle(transform.forward, dirToPlayer) < angle)
+            {
+                float dstToPlayer = Vector3.Distance(transform.position, player.position);        
+                if (!Physics.Raycast(transform.position, dirToPlayer, dstToPlayer, obsticle))
+                {
+                    playerInSightRange = true;                     
+                }
+                else
+                {
+                    playerInSightRange = false;
+                }
+            }
         }
     }
 }
