@@ -128,3 +128,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 40
+  radius: 4
+  fireParticles: {fileID: 430943806706144120, guid: 9fc3f1b890463ec42ab52eadfd7d8980, type: 3}
+  type: 1
