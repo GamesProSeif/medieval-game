@@ -16,13 +16,20 @@ public class ItemController : MonoBehaviour
     {
         if(collision.gameObject.GetComponent<Item>() != null) {
             Item temp = collision.gameObject.GetComponent<Item>();
-            InventoryItem temp1 = new InventoryItem();
-            temp1.itemName=temp.name;
-            temp1.count=temp.count;
-            temp1.stackable=temp.stackable;
-            temp1.prefab=temp.prefab;
-            items.Add(temp1);
-            updateUI();
+            InventoryItem x = findByName(temp.itemName);
+            if (temp.stackable)
+            {           
+                if (x != null)
+                    x.count += temp.count;
+                else addToList(temp);
+            }
+            else
+            {
+                if (x == null)
+                    addToList(temp);
+                else return;
+
+            }
             Destroy(temp.gameObject);
         }      
     }
@@ -30,30 +37,49 @@ public class ItemController : MonoBehaviour
     void updateUI()
     {
 
-        if (findByName("Scitmar"))
+        if (findByName("Scitmar") != null)
         {
             image1.gameObject.SetActive(true);
         }
 
-        if (findByName("Bow"))
+        if (findByName("Bow") != null)
         {
             image2.gameObject.SetActive(true);
         }
-        if (findByName("FireBomb"))
+        if (findByName("FireBomb") != null)
             image3.gameObject.SetActive(true);
     }
 
-    private bool findByName(string name)
+    public InventoryItem findByName(string name)
     {
         foreach(var item in items)
         {
             if (item.itemName == name)
             {
-                return true;
+                return item;
             }
           
         }
-        return false;
+        return null;
     }
+
+    private void addToList(Item item)
+    {
+        InventoryItem temp1 = new InventoryItem();
+        temp1.itemName = item.name;
+        temp1.count = item.count;
+        temp1.stackable = item.stackable;
+        temp1.prefab = item.prefab;
+        items.Add(temp1);
+        updateUI();
+    }
+
+    public void decrementCount(InventoryItem item)
+    {
+        item.count--;
+        if (item.count <= 0)
+            items.Remove(item);
+    }
+
 }
 

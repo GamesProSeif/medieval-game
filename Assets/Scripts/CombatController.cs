@@ -11,7 +11,7 @@ public class CombatController : MonoBehaviour
     private StatsController playerStats;
     private bool readyToAttack = true;
     private List<GameObject> thrownProjectiles = new List<GameObject>();
-
+    private ItemController itemController;
     [Header("Keys")]
     public KeyCode attack = KeyCode.Mouse0;
     public KeyCode equipSword = KeyCode.Alpha1;
@@ -24,6 +24,7 @@ public class CombatController : MonoBehaviour
     public GameObject fireGrenadePrefab;
     public GameObject fireParticlesPrefab;
     public Transform cam;
+    
 
     [Header("General Settings")]
     public int maxProjectiles;
@@ -41,7 +42,6 @@ public class CombatController : MonoBehaviour
     [Serializable]
     public class RangedWeaponSettings : WeaponSettings
     {
-        public int ammo;
         public float forwardForce;
         public float upwardForce;
     }
@@ -60,13 +60,14 @@ public class CombatController : MonoBehaviour
     private void Start()
     {
         playerStats = GetComponent<StatsController>();
+        itemController = GetComponent<ItemController>();
     }
     private void Update()
     {
         if (playerStats.killed) return;
         if (Input.GetKeyDown(attack))
             Attack();
-
+        
         if (Input.GetKeyDown(equipSword))
             EquipWeapon(Weapon.Sword);
         else if (Input.GetKeyDown(equipBow))
@@ -77,6 +78,18 @@ public class CombatController : MonoBehaviour
 
     private void EquipWeapon(Weapon weapon)
     {
+        switch(weapon)
+        {
+            case Weapon.Sword:
+                if (itemController.findByName("Scitmar") == null) return;
+                break;
+            case Weapon.Bow:
+                if (itemController.findByName("Bow") == null) return;
+                break;
+            case Weapon.FireGrenade:
+                if (itemController.findByName("FireGrenade") == null || itemController.findByName("FireGrenade").count == 0) return;
+                break;
+        }
         currentWeapon = weapon;
     }
 
@@ -105,19 +118,26 @@ public class CombatController : MonoBehaviour
         {
             GameObject objectToThrow = null;
             RangedWeaponSettings rangedSettings = null;
+            InventoryItem item = null;
             if (currentWeapon == Weapon.Bow)
             {
+                item = itemController.findByName("Arrow");
                 weaponSettings = bowSettings;
                 rangedSettings = (RangedWeaponSettings) weaponSettings;
                 objectToThrow = arrowPrefab;
+                
             }
             else if (currentWeapon == Weapon.FireGrenade)
             {
+                item = itemController.findByName("FireGrenade");
                 weaponSettings = fireGrenadeSettings;
                 rangedSettings = (RangedWeaponSettings)weaponSettings;
                 objectToThrow = fireGrenadePrefab;
+                
             }
-
+            if (item == null || item.count <= 0) return;
+            itemController.decrementCount(item);
+           
             GameObject projectile = Instantiate(objectToThrow, attackPoint.transform.position, cam.transform.rotation * objectToThrow.transform.rotation);
             ProjectileAddon projAddon = projectile.GetComponent<ProjectileAddon>();
             projAddon.SetInitiator(gameObject, rangedSettings.damage);
@@ -149,7 +169,6 @@ public class CombatController : MonoBehaviour
                 + transform.up * rangedSettings.upwardForce;
 
             projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
-            rangedSettings.ammo--;
         }
         Invoke(nameof(ResetAttack), weaponSettings.cooldown);
     }
