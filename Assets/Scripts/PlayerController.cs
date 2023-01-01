@@ -13,22 +13,13 @@ public class PlayerController : MonoBehaviour
 
     Vector3 PlayerMovementInput;
 
-     //public TextMeshProUGUI text;
-   // public AudioSource audi;
-    //public GameObject layout;
-    //public Button button;
-    // public GameObject zero;
-    //  public GameObject one;
-
-  
 
     // Wanted References
     private Rigidbody playerBody;
-    private Collider playerCollider;
     public Transform Orientation;
     public Transform targetLookAt;
     public ThirdPersonCamera Camera;
-    //public Animator anim;
+    public Animator anim;
 
     // Changable Variables
     public float Speed;
@@ -51,24 +42,13 @@ public class PlayerController : MonoBehaviour
    public int Strength;
    public int Exp;
 
-    
-    
-
-
     void Awake()
     {
         playerBody = GetComponent<Rigidbody>();
-        playerCollider = GetComponent<Collider>();
         isGrounded = true;
 
-      //  layout.SetActive(false);
-       // zero.transform.position = transform.gameObject.transform.position;
-      //  one.transform.position = GameObject.Find("Enemy").gameObject.transform.position;
-
         stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
-       // anim = GetComponent<Animator>();  
-
-        // audi.Stop();
+        anim = GetComponent<Animator>();  
     }
     // FixedUpdate is called before the Update Method
     private void FixedUpdate()
@@ -93,13 +73,11 @@ public class PlayerController : MonoBehaviour
 
         // Speed control
         speedControl();
-        //anim.SetFloat("speedf",playerBody.velocity.magnitude);
+        anim.SetFloat("speedf",playerBody.velocity.magnitude);
     }
  
     void MovePlayer()
-    {
-        
-        
+    {     
             // Getting the Direction of the player
             Vector3 moveDir = Orientation.forward * PlayerMovementInput.z + Orientation.right * PlayerMovementInput.x;
             // Moving the player in set direction
@@ -110,6 +88,7 @@ public class PlayerController : MonoBehaviour
             // Adding force to the player in the y axis
             playerBody.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
             isGrounded = false;
+            anim.SetBool("isJumping", true);
         }
     }
 
@@ -167,35 +146,18 @@ public class PlayerController : MonoBehaviour
         // Checking if the player on ground
         if (collision.gameObject.CompareTag("Ground"))
             isGrounded = true;
-
-        // Noted for Later Use ( Checking if player has collided with an object of type EXP, if true destroy the other object >> the EXP therefore adding the EXP to the variable
-        else if(collision.gameObject.CompareTag("Exp"))
-        {
-            Destroy(collision.gameObject);
-            Exp++;
-           // audi.Play();
-          // text.gameObject.SetActive(true);
-        }
+        anim.SetBool("isJumping", false);
     }
 
    public void GameOver()
     {
-
         isGameOver = true;
-        //layout.SetActive(true);
-
     }
 
     public void restartGame()
     {
         isGameOver = false;
-
-      //  gameObject.transform.position = zero.transform.position;
-       // GameObject.Find("Enemy").gameObject.transform.position = one.transform.position;
-       // layout.SetActive(false);
     }
-
-
 }
 
 

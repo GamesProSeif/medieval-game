@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Permissions;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,6 +11,7 @@ public class Enemy : MonoBehaviour
     public PlayerController controller;
     public Transform player;
     public Vector3 lastPlayerPos;
+    public Vector3 lastPoint;
     public Rigidbody rb;
     public LayerMask Ground, Player;
 
@@ -17,7 +19,7 @@ public class Enemy : MonoBehaviour
     public int health;
 
     public float startWaitTime = 4;
-    public float timeToRotate = 2;
+    public float timeToRotate = 10;
     public float walkSpeed;
     public float runSpeed;
 
@@ -32,9 +34,12 @@ public class Enemy : MonoBehaviour
 
     //stats
     public float sightRange, attackRange;
-    public float m_WaitTime, m_RotateTime;
+    public float m_WaitTime, m_RotateTime, m_BeforeMoving;
     public float angle;
-    public bool playerInSightRange, playerInAttackRange, wasChasing;
+    public bool playerInSightRange, playerInAttackRange, wasChasing, isLookingForPlayer;
+
+    public enum AiStatus {Attacker , Archer, Patroller}
+    public AiStatus status;
 
     void Awake()
     {
@@ -44,7 +49,6 @@ public class Enemy : MonoBehaviour
         controller = GameObject.Find("Player").gameObject.GetComponent<PlayerController>();
         angle = 45;
         lastPlayerPos = Vector3.zero;
-
 
     }
 
@@ -57,34 +61,23 @@ public class Enemy : MonoBehaviour
 
             RoundEnviroment();
 
-           // playerInSightRange = Physics.CheckSphere(transform.position, sightRange, Player);
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, Player);
             //Check for sight and attack range
-            if (!playerInSightRange && !playerInAttackRange)
+            if (!playerInSightRange && !playerInAttackRange && status == AiStatus.Patroller)
             {
-                lastPlayerPos = player.position;
-                if (m_RotateTime > 0)
+                if(m_RotateTime > 0)
                 {
-                    transform.LookAt(player);
-                    m_RotateTime -= Time.deltaTime;
                     stopMove();
+                    m_RotateTime -= Time.deltaTime;
                 }
                 else
-                {
-                    if (wasChasing)
-                    {
-                        m_WaitTime = 2f;
-                        lookingForPlayer(lastPlayerPos);
-                    }
                     Patrol();
-            
-                }
+
             }
             else if (playerInSightRange && !playerInAttackRange)
             {
                 if (m_WaitTime >= 0)
                 {
-                    m_WaitTime = 0;
                     ChasePlayer();
                 }
             }
@@ -109,9 +102,15 @@ public class Enemy : MonoBehaviour
     private void Patrol()
     {
         startMove(walkSpeed);
-        if (!walkPointSet)
+
+        if(wasChasing)
+        {
+            lookingForPlayer(lastPlayerPos);          
+
+        }
+        if (!walkPointSet && !wasChasing)
             generatePoint();
-        else if (walkPointSet)
+        else if (walkPointSet && !wasChasing)
         {
             agent.SetDestination(walkPoint);
         }
@@ -150,15 +149,13 @@ public class Enemy : MonoBehaviour
     }
     private void ChasePlayer()
     {
+        lastPlayerPos = transform.position;
         Vector3 dirToplayer = (transform.position - player.position).normalized;
-        walkPointSet = false;
         m_RotateTime = timeToRotate;
         agent.SetDestination(player.position);
         transform.LookAt(player);
         startMove(runSpeed);
         wasChasing = true;
-
-
     }
     private void AttackPlayer()
     {
@@ -169,8 +166,16 @@ public class Enemy : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            //code of attack
+            if(status == AiStatus.Attacker || status == AiStatus.Patroller)
+            {
 
+
+            }
+
+            else if (status == AiStatus.Archer)
+            {
+
+            }
             alreadyAttacked = true;
 
         }
@@ -193,13 +198,21 @@ public class Enemy : MonoBehaviour
     private void lookingForPlayer(Vector3 p)
     {
         agent.SetDestination(p);
-        if (m_WaitTime > 0 && Vector3.Distance(transform.position, p) <= 0.3)
+        if (Vector3.Distance(transform.position, p) <= 0.3f)
         {
-            stopMove();
-            m_WaitTime -= Time.deltaTime;
+            if (m_WaitTime > 0)
+            {
+                stopMove();
+                m_WaitTime -= Time.deltaTime;
+            }
+            else
+            {
+                wasChasing = false;
+                m_WaitTime = startWaitTime / 2;
+            }
         }
-        else wasChasing = false;
-       
+
+
 
     }
 
@@ -226,7 +239,7 @@ public class Enemy : MonoBehaviour
             if (Vector3.Angle(transform.forward, dirToPlayer) < angle)
             {
                 float dstToPlayer = Vector3.Distance(transform.position, player.position);        
-                if (!Physics.Raycast(transform.position, dirToPlayer, dstToPlayer, obsticle))
+                if (!Physics.Raycast(transform.position, dirToPlayer, dstToPlayer, obsticle) && dstToPlayer <= sightRange)
                 {
                     playerInSightRange = true;                     
                 }

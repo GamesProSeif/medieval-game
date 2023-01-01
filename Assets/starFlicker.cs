@@ -12,7 +12,7 @@ public class starFlicker : MonoBehaviour
 
     private PostProcessVolume volume;
     private Bloom bloom;
-    private float elapsedTime;
+  //  private float elapsedTime;
     
     // Start is called before the first frame update
     void Start()
@@ -29,11 +29,11 @@ public class starFlicker : MonoBehaviour
        // if (elapsedTime >= 1)
        // {
             float x = Random.Range(0f, 1f);
-            Debug.Log(x);
+           // Debug.Log(x);
             if (x > intensityPercentage)
                 bloom.intensity.Override(flickerIntensity);
             else bloom.intensity.Override(normalIntensity);
-            elapsedTime = 0f;
+            //elapsedTime = 0f;
        // }
         
         
