@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 430943806706144118}
   - component: {fileID: 430943806706144121}
   - component: {fileID: 2100111130117993153}
-  - component: {fileID: 3690834014456368833}
+  - component: {fileID: -6528810545305266113}
+  - component: {fileID: -7039472119706299850}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -4827,7 +4828,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 31.3
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3690834014456368833
+--- !u!114 &-6528810545305266113
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4836,8 +4837,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 430943806706144120}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 390bef90b78204e4ca1dc96e6de6d45e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b8cb859a22f3df4987cd3d14f0c3add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  damagedEnemies: []
+--- !u!114 &-7039472119706299850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430943806706144120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4723f70f7ce8c0a45a138b61bb06e78a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisions: []
