@@ -7,9 +7,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
 
-    private float health;
     private float lerpTimer;
-    public float maxHealth = 100f;
     public float chipSpeed = 10f;
     public float waitTimer = 1f;
     public Image frontHealthBar;
@@ -17,32 +15,28 @@ public class PlayerHealth : MonoBehaviour
     public Image backGround;
     public Image Frame;
     public TextMeshProUGUI h;
+    public StatsController stats;
     // Start is called before the first frame update
     void Start()
     {
-        health = maxHealth;
-        h.text = health + " / " + maxHealth;
+        stats = GetComponent<StatsController>();
+        stats.health = stats.maxHealth;
+        h.text = stats.health + " / " + stats.maxHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
-        health = Mathf.Clamp(health, 0, maxHealth);
+        stats.health = Mathf.Clamp(stats.health, 0, stats.maxHealth);
         updateHealthUI();
-
-        if (Input.GetKeyDown(KeyCode.A))
-            TakeDamage(Random.Range(5, 10));
-        if (Input.GetKeyDown(KeyCode.S))
-            RestoreHealth(Random.Range(5, 10));
-        Debug.Log(maxHealth);
     }
 
     public void updateHealthUI()
     {
         float fillF = frontHealthBar.fillAmount;
         float fillB = backHealthBar.fillAmount;
-        float hFraction = health / maxHealth;
-        h.text = health + " / " + maxHealth;
+        float hFraction = stats.health / stats.maxHealth;
+        h.text = stats.health + " / " + stats.maxHealth;
 
         if (fillB > hFraction)
         {
@@ -76,7 +70,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
+        stats.health -= damage;
         lerpTimer = 0f;
         waitTimer = 1f;
 
@@ -84,7 +78,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void RestoreHealth(float healAmount)
     {
-        health += healAmount;
+        stats.health += healAmount;
         lerpTimer = 0f;
 
     }
@@ -92,9 +86,9 @@ public class PlayerHealth : MonoBehaviour
     public void IncreaseHealth(int level)
     {
         level = GetComponent<LevelingSystem>().level;
-        int ratio = Mathf.RoundToInt((health *0.01f) * (100 - level) * 0.327f);
-        maxHealth += Mathf.RoundToInt((health *0.01f) * (100 - level) * 0.327f);
-        health = maxHealth;
+        int ratio = Mathf.RoundToInt((stats.health *0.01f) * (100 - level) * 0.327f);
+        stats.maxHealth += Mathf.RoundToInt((stats.health *0.01f) * (100 - level) * 0.327f);
+        stats.health = stats.maxHealth;
         backGround.rectTransform.sizeDelta = new Vector2(backGround.rectTransform.sizeDelta.x + ratio, backGround.rectTransform.sizeDelta.y);
         backGround.rectTransform.transform.position = new Vector2(backGround.rectTransform.transform.position.x + ratio/2, backGround.rectTransform.position.y);
         backHealthBar.rectTransform.sizeDelta = new Vector2(backHealthBar.rectTransform.sizeDelta.x + ratio, backHealthBar.rectTransform.sizeDelta.y);
@@ -104,5 +98,7 @@ public class PlayerHealth : MonoBehaviour
         frontHealthBar.rectTransform.sizeDelta = new Vector2(frontHealthBar.rectTransform.sizeDelta.x + ratio, frontHealthBar.rectTransform.sizeDelta.y);
         frontHealthBar.rectTransform.transform.position = new Vector2(frontHealthBar.rectTransform.transform.position.x + ratio/2, frontHealthBar.rectTransform.transform.position.y);
     }
+
+   
 
 }

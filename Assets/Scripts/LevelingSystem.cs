@@ -27,6 +27,7 @@ public class LevelingSystem : MonoBehaviour
     [Range(7f, 14f)]
     public float divisionMultiplier = 7;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,11 +47,7 @@ public class LevelingSystem : MonoBehaviour
         UpdateXpUI();
         if (level < maxLevel)
         {
-            if (Input.GetKeyDown(KeyCode.Equals))
-            {
-                GainExperienceFlatRate(20);
-
-            }
+          
             if (currentxp > requiredxp)
             {
 
@@ -103,12 +100,9 @@ public class LevelingSystem : MonoBehaviour
     }
     public void GainExperienceFlatRate(float xpGain)
     {
-     
             currentxp += xpGain;
             lerptimer = 0f;
             delaytimer = 0f;
-        
-
     }
     public void GainExperienceScalable(float xpGained,int passedlevel)
     {

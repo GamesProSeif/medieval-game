@@ -5,18 +5,28 @@ using UnityEngine;
 public class StatsController : MonoBehaviour
 {
     [Header("Stats")]
-    public int health;
+    public float health;
+    public float maxHealth;
     public int level;
     public int xp;
     public float strength;
     public bool killed = false;
+
+    [Header("LevelingSystem")]
+    public LevelingSystem levelingSystem;
 
     private void Start()
     {
         if (killed) return;
         if (health == 0)
             KillEntity(null);
+
+        if (gameObject.tag == "Player")
+        {
+            levelingSystem = GetComponent<LevelingSystem>();
+        }
     }
+    
 
     public void TakeDamage(int damage, GameObject damagedBy)
     {
@@ -46,11 +56,16 @@ public class StatsController : MonoBehaviour
             moveController.enabled = false;
         }
         else if (gameObject.tag == "Enemy")
+        {
             Invoke(nameof(destroy), 3);
+            levelingSystem.GainExperienceScalable(xp, level);
+        }
     }
 
     public void destroy()
     {
         Destroy(gameObject);
     }
+
+    
 }
