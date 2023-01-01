@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,11 +6,11 @@ using UnityEngine.Timeline;
 
 public class ProjectileAddon : MonoBehaviour
 {
-    public int damage;
-    public int radius;
     public GameObject fireParticles;
     private Rigidbody rb;
     private bool targetHit;
+    private StatsController playerStats = null;
+    private CombatController playerCombatController = null;
 
     public enum WeaponType { Projectile, Grenade };
     public WeaponType type;
@@ -17,20 +18,25 @@ public class ProjectileAddon : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        GameObject playerGameObject = GameObject.Find("Player");
+        playerStats = playerGameObject.GetComponent<StatsController>();
+        playerCombatController = playerGameObject.GetComponent<CombatController>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
-
         if (type == WeaponType.Projectile)
         {
             if (targetHit)
                 return;
+            if (collision.gameObject.tag == "Player") return;
             targetHit = true;
-            if (collision.gameObject.GetComponent<Enemy>() != null)
+            if (collision.gameObject.GetComponent<StatsController>() != null)
             {
-                Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-                enemy.takeDamage(damage);
+                StatsController enemyStats = collision.gameObject.GetComponent<StatsController>();
+                enemyStats.TakeDamage(
+                    Convert.ToInt32(playerCombatController.bowSettings.damage * playerStats.strength),
+                    GameObject.Find("Player"));
                 Destroy(gameObject);
             }
             rb.isKinematic = true;
@@ -39,18 +45,12 @@ public class ProjectileAddon : MonoBehaviour
         {
             if (collision.gameObject.tag == "Ground")
             {
-                GameObject particles = Instantiate(fireParticles, transform.position, fireParticles.transform.rotation);
+                Instantiate(fireParticles, transform.position, fireParticles.transform.rotation);
 
-                SphereCollider collider = particles.GetComponent<SphereCollider>();
-
-                // Invoke(nameof(destroy), 5);
                 Destroy(gameObject);
                 rb.isKinematic = true;
                 transform.SetParent(collision.transform);
             }
         }
-
-
     }
-
 }
