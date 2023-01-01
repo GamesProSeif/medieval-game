@@ -11,7 +11,6 @@ public class CombatController : MonoBehaviour
     private StatsController playerStats;
     private bool readyToAttack = true;
     private List<GameObject> thrownProjectiles = new List<GameObject>();
-    private Collider swordCollider = null;
 
     [Header("Keys")]
     public KeyCode attack = KeyCode.Mouse0;
@@ -35,7 +34,9 @@ public class CombatController : MonoBehaviour
         public float cooldown;
     }
     [Serializable]
-    public class BladeWeaponSettings : WeaponSettings { }
+    public class BladeWeaponSettings : WeaponSettings {
+        public float range;
+    }
 
     [Serializable]
     public class RangedWeaponSettings : WeaponSettings
@@ -59,7 +60,6 @@ public class CombatController : MonoBehaviour
     private void Start()
     {
         playerStats = GetComponent<StatsController>();
-        swordCollider = GameObject.Find("SwordHitCollider").GetComponent<Collider>();
     }
     private void Update()
     {
@@ -91,10 +91,12 @@ public class CombatController : MonoBehaviour
         {
             weaponSettings = swordSettings;
             BladeWeaponSettings settings = (BladeWeaponSettings)weaponSettings;
-            List<GameObject> collisions =
-                GameObject.Find("SwordHitCollider").GetComponent<ColliderList>().collisions; 
+
+            var collisions = Physics.OverlapSphere(transform.position, settings.range);
+            
             foreach (var collision in collisions)
             {
+                if (collision.GetComponent<StatsController>() == null || collision.name == "Player") continue;
                 collision.GetComponent<StatsController>()
                     .TakeDamage(Convert.ToInt32(settings.damage * playerStats.strength), gameObject);
             }
@@ -116,7 +118,9 @@ public class CombatController : MonoBehaviour
                 objectToThrow = fireGrenadePrefab;
             }
 
-            GameObject projectile = Instantiate(objectToThrow, attackPoint.transform.position, cam.transform.rotation);
+            GameObject projectile = Instantiate(objectToThrow, attackPoint.transform.position, cam.transform.rotation * objectToThrow.transform.rotation);
+            ProjectileAddon projAddon = projectile.GetComponent<ProjectileAddon>();
+            projAddon.SetInitiator(gameObject, rangedSettings.damage);
             thrownProjectiles.Add(projectile);
             if (thrownProjectiles.Count > maxProjectiles)
             {
@@ -153,5 +157,12 @@ public class CombatController : MonoBehaviour
     private void ResetAttack()
     {
         readyToAttack = true;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position
+            + transform.forward * (swordSettings.range), swordSettings.range);
     }
 }

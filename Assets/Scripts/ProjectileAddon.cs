@@ -15,6 +15,11 @@ public class ProjectileAddon : MonoBehaviour
     public enum WeaponType { Projectile, Grenade };
     public WeaponType type;
 
+    private enum Shooter { Player, Enemy }
+    private Shooter shooter;
+    private int damage;
+    public GameObject initiator;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -23,20 +28,34 @@ public class ProjectileAddon : MonoBehaviour
         playerCombatController = playerGameObject.GetComponent<CombatController>();
     }
 
+    public void SetInitiator(GameObject initiator, int damage)
+    {
+        this.initiator = initiator;
+        this.damage = damage;
+        if (initiator.name == "Player")
+            shooter = Shooter.Player;
+        else
+            shooter = Shooter.Enemy;
+    }
+
     public void OnCollisionEnter(Collision collision)
     {
         if (type == WeaponType.Projectile)
         {
             if (targetHit)
                 return;
-            if (collision.gameObject.tag == "Player") return;
+            if (shooter == Shooter.Player && collision.gameObject.tag == "Player"
+                || shooter == Shooter.Enemy && collision.gameObject.tag == "Enemy"
+                ) return;
             targetHit = true;
             if (collision.gameObject.GetComponent<StatsController>() != null)
             {
-                StatsController enemyStats = collision.gameObject.GetComponent<StatsController>();
-                enemyStats.TakeDamage(
-                    Convert.ToInt32(playerCombatController.bowSettings.damage * playerStats.strength),
-                    GameObject.Find("Player"));
+                StatsController shotStats = collision.gameObject.GetComponent<StatsController>();
+                StatsController shooterStats = initiator.GetComponent<StatsController>();
+
+                shotStats.TakeDamage(
+                    Convert.ToInt32(damage * shooterStats.strength),
+                    initiator);
                 Destroy(gameObject);
             }
             rb.isKinematic = true;
