@@ -65,6 +65,9 @@ public class GameManager : MonoBehaviour
             new InventoryItem("Arrow", 25, combatController.arrowPrefab, true),
             new InventoryItem("FireGrenade", 10, combatController.fireGrenadePrefab, true),
             new InventoryItem("HealthPotion", 5, null, true),
+            new InventoryItem("SpeedPotion", 5, null, true),
+            new InventoryItem("StrengthPotion", 5, null, true),
+
         };
 
         foreach (var item in items)

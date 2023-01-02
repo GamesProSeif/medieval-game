@@ -9,7 +9,9 @@ public class ItemController : MonoBehaviour
     public RawImage image1;
     public RawImage image2;
     public RawImage image3;
-
+    public RawImage image4;
+    public RawImage image5;
+    public RawImage image6;
 
 
     private void OnCollisionEnter(Collision collision)
@@ -36,18 +38,18 @@ public class ItemController : MonoBehaviour
 
     void updateUI()
     {
-
-        if (findByName("Scitmar") != null)
-        {
+        if (findByName("Scitmar") != null)   
             image1.gameObject.SetActive(true);
-        }
-
         if (findByName("Bow") != null)
-        {
             image2.gameObject.SetActive(true);
-        }
         if (findByName("FireGrenade") != null)
             image3.gameObject.SetActive(true);
+        if (findByName("HealthPotion") != null)
+            image4.gameObject.SetActive(true);
+        if (findByName("SpeedPotion") != null)
+            image5.gameObject.SetActive(true);
+        if (findByName("StrengthPotion") != null)
+            image6.gameObject.SetActive(true);
     }
 
     public InventoryItem findByName(string name)

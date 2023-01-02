@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Runtime.InteropServices;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class CombatController : MonoBehaviour
 {
@@ -10,13 +12,22 @@ public class CombatController : MonoBehaviour
     public Weapon currentWeapon = Weapon.Bow;
     private StatsController playerStats;
     private bool readyToAttack = true;
+    private bool usedHealthPotion;
+    private bool usedSpeedPotion;
+    private bool usedStrengthPotion;
     private List<GameObject> thrownProjectiles = new List<GameObject>();
     private ItemController itemController;
+    private PlayerHealth playerHealth;
+    private MovementController movementController;
     [Header("Keys")]
     public KeyCode attack = KeyCode.Mouse0;
     public KeyCode equipSword = KeyCode.Alpha1;
     public KeyCode equipBow = KeyCode.Alpha2;
     public KeyCode equipFireGrenade = KeyCode.Alpha3;
+    public KeyCode drinkHealthPotion = KeyCode.H;
+    public KeyCode drinkSpeedPotion = KeyCode.J;
+    public KeyCode drinkBuffPotion = KeyCode.K;
+
 
     [Header("References")]
     public GameObject attackPoint;
@@ -52,28 +63,52 @@ public class CombatController : MonoBehaviour
         public float duration;
     }
 
+    public enum PotionType { Health, Speed, Strength }
+
+    [Serializable]
+
+    public class PotionSettings 
+    {
+
+        public float buffMultiplier;
+        public float buffTime;
+
+    }
+
     [Header("Weapon Settings")]
     public BladeWeaponSettings swordSettings;
     public RangedWeaponSettings bowSettings;
     public GrenadeWeaponSettings fireGrenadeSettings;
+    public PotionSettings healthPotionSettings;
+    public PotionSettings speedPotionSettings;
+    public PotionSettings strengthPotionSettings;
+
 
     private void Start()
     {
         playerStats = GetComponent<StatsController>();
         itemController = GetComponent<ItemController>();
+        playerHealth = GetComponent<PlayerHealth>();
+        movementController = GetComponent<MovementController>();
     }
     private void Update()
     {
         if (playerStats.killed) return;
         if (Input.GetKeyDown(attack))
             Attack();
-        
+
         if (Input.GetKeyDown(equipSword))
             EquipWeapon(Weapon.Sword);
         else if (Input.GetKeyDown(equipBow))
             EquipWeapon(Weapon.Bow);
         else if (Input.GetKeyDown(equipFireGrenade))
             EquipWeapon(Weapon.FireGrenade);
+        else if (Input.GetKeyDown(drinkHealthPotion))
+            DrinkPotion(PotionType.Health);
+        else if (Input.GetKeyDown(drinkSpeedPotion))
+            DrinkPotion(PotionType.Speed);
+        else if (Input.GetKeyDown(drinkBuffPotion))
+            DrinkPotion(PotionType.Strength);
     }
 
     private void EquipWeapon(Weapon weapon)
@@ -176,6 +211,63 @@ public class CombatController : MonoBehaviour
     private void ResetAttack()
     {
         readyToAttack = true;
+    }
+
+    private void DrinkPotion(PotionType potion)
+    {
+        InventoryItem item = null;
+        if (potion == PotionType.Health)
+        {
+            item = itemController.findByName("HealthPotion");
+            if (item == null || item.count <= 0) return;
+            playerHealth.RestoreHealth(healthPotionSettings.buffMultiplier);
+        }
+
+        if(potion == PotionType.Speed)
+        {
+            item = itemController.findByName("SpeedPotion");
+            if (item == null || item.count <= 0) return;
+            increaseSpeed();   
+        }
+   
+        if (potion == PotionType.Strength)
+        {
+            item = itemController.findByName("StrengthPotion");
+            if (item == null || item.count <= 0) return;
+            increaseStrength();
+        }
+        itemController.decrementCount(item);
+    }
+
+    private void increaseSpeed()
+    {
+        if (usedSpeedPotion) return;
+        movementController.Speed *= speedPotionSettings.buffMultiplier;
+        usedSpeedPotion = true;
+        Invoke(nameof(RevertSpeed), speedPotionSettings.buffTime);
+        
+      
+    }
+    
+    private void RevertSpeed()
+    {
+        movementController.Speed /= speedPotionSettings.buffMultiplier;
+        usedSpeedPotion = false;
+    }    
+    
+    private void increaseStrength()
+    {
+        if (usedStrengthPotion) return;
+        playerStats.strength *= strengthPotionSettings.buffMultiplier;   
+        usedStrengthPotion = true;
+        Invoke(nameof(RevertStrength), strengthPotionSettings.buffTime);
+      
+    }
+
+    private void RevertStrength()
+    {
+        playerStats.strength /= strengthPotionSettings.buffMultiplier;
+        usedStrengthPotion = false;
     }
 
     private void OnDrawGizmosSelected()
