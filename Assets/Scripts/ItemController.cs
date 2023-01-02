@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ItemController : MonoBehaviour
 {
     public List<InventoryItem> items = new List<InventoryItem>(); 
-    public RawImage image1;
-    public RawImage image2;
-    public RawImage image3;
-    public RawImage image4;
-    public RawImage image5;
-    public RawImage image6;
+    public RawImage scitmarImage;
+    public RawImage bowImage;
+    public RawImage fireGrenadeImage;
+    public RawImage healthPotionImage;
+    public RawImage speedPotionImage;
+    public RawImage strengthPotionImage;
 
+    public TextMeshProUGUI fireGrenadeAmmoText;
+    public TextMeshProUGUI arrowAmmoText;
+    public TextMeshProUGUI healthPotionCount;
+    public TextMeshProUGUI speedPotionCount;
+    public TextMeshProUGUI strengthPotionCount;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -38,12 +45,26 @@ public class ItemController : MonoBehaviour
 
     void updateUI()
     {
-        image1.gameObject.SetActive(findByName("Scitmar") != null);
-        image2.gameObject.SetActive(findByName("Bow") != null);
-        image3.gameObject.SetActive(findByName("FireGrenade") != null);
-        image4.gameObject.SetActive(findByName("HealthPotion") != null);
-        image5.gameObject.SetActive(findByName("SpeedPotion") != null);
-        image6.gameObject.SetActive(findByName("StrengthPotion") != null);
+        scitmarImage.gameObject.SetActive(findByName("Scitmar") != null);
+        bowImage.gameObject.SetActive(findByName("Bow") != null);
+        arrowAmmoText.gameObject.SetActive(findByName("Bow") != null && findByName("Arrow") != null);
+        arrowAmmoText.text = findByName("Arrow") != null ? findByName("Arrow").count.ToString() : "0";
+
+        fireGrenadeImage.gameObject.SetActive(findByName("FireGrenade") != null);
+        fireGrenadeAmmoText.gameObject.SetActive(findByName("FireGrenade") != null);
+        fireGrenadeAmmoText.text = findByName("FireGrenade") != null ? findByName("FireGrenade").count.ToString() : "0";
+
+        healthPotionImage.gameObject.SetActive(findByName("HealthPotion") != null);
+        healthPotionCount.gameObject.SetActive(findByName("HealthPotion") != null);
+        healthPotionCount.text = findByName("HealthPotion") != null ? findByName("HealthPotion").count.ToString() : "0";
+
+        speedPotionImage.gameObject.SetActive(findByName("SpeedPotion") != null);
+        speedPotionCount.gameObject.SetActive(findByName("SpeedPotion") != null);
+        speedPotionCount.text = findByName("SpeedPotion") != null ? findByName("SpeedPotion").count.ToString() : "0";
+
+        strengthPotionImage.gameObject.SetActive(findByName("StrengthPotion") != null);
+        strengthPotionCount.gameObject.SetActive(findByName("StrengthPotion") != null);
+        strengthPotionCount.text = findByName("StrengthPotion") != null ? findByName("StrengthPotion").count.ToString() : "0";
     }
 
     public InventoryItem findByName(string name)
@@ -72,11 +93,9 @@ public class ItemController : MonoBehaviour
         }
         else
         {
-            Debug.Log(item.itemName);
             items.Add(item);
         }
         updateUI();
-        Debug.Log(findByName("Bow"));
     }
 
     public void decrementCount(InventoryItem item)
@@ -84,6 +103,7 @@ public class ItemController : MonoBehaviour
         item.count--;
         if (item.count <= 0)
             items.Remove(item);
+        updateUI();
     }
 
 }
