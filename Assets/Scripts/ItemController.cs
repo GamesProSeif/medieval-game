@@ -46,31 +46,34 @@ public class ItemController : MonoBehaviour
         {
             image2.gameObject.SetActive(true);
         }
-        if (findByName("FireBomb") != null)
+        if (findByName("FireGrenade") != null)
             image3.gameObject.SetActive(true);
     }
 
     public InventoryItem findByName(string name)
     {
         foreach(var item in items)
-        {
             if (item.itemName == name)
-            {
                 return item;
-            }
-          
-        }
         return null;
     }
 
-    private void addToList(Item item)
+    public void addToList(Item item)
     {
         InventoryItem temp1 = new InventoryItem();
         temp1.itemName = item.name;
         temp1.count = item.count;
         temp1.stackable = item.stackable;
         temp1.prefab = item.prefab;
-        items.Add(temp1);
+        addToList(temp1);
+    }
+
+    public void addToList(InventoryItem item)
+    {
+        if (item.stackable && findByName(item.itemName) != null)
+            findByName(item.itemName).count += item.count;
+        else
+            items.Add(item);
         updateUI();
     }
 

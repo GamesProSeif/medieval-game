@@ -9,4 +9,13 @@ public class InventoryItem
     public GameObject prefab;
     public bool stackable;
 
+    public InventoryItem() { }
+
+    public InventoryItem(string itemName, int count, GameObject prefab, bool stackable)
+    {
+        this.itemName = itemName;
+        this.count = count;
+        this.prefab = prefab;
+        this.stackable = stackable;
+    }
 }
