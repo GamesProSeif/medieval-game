@@ -12,8 +12,7 @@ public class StatsController : MonoBehaviour
     public float strength;
     public bool killed = false;
 
-    [Header("LevelingSystem")]
-    public LevelingSystem levelingSystem;
+    private LevelingSystem levelingSystem;
 
     private void Start()
     {
@@ -21,10 +20,7 @@ public class StatsController : MonoBehaviour
         if (health == 0)
             KillEntity(null);
 
-        if (gameObject.tag == "Player")
-        {
-            levelingSystem = GetComponent<LevelingSystem>();
-        }
+        levelingSystem = GameObject.Find("Player").GetComponent<LevelingSystem>();
     }
     
 
@@ -52,13 +48,18 @@ public class StatsController : MonoBehaviour
         killed = true;
         if (gameObject.tag == "Player")
         {
+            //@TODO: Player death animation
             MovementController moveController = GetComponent<MovementController>();
+            CombatController combatController = GetComponent<CombatController>();
             moveController.enabled = false;
+            combatController.enabled = false;
         }
         else if (gameObject.tag == "Enemy")
         {
+            //@TODO: Enemy death animation
             Invoke(nameof(destroy), 3);
-            levelingSystem.GainExperienceScalable(xp, level);
+            if (killedBy.name == "Player")
+                levelingSystem.GainExperienceScalable(xp, level);
         }
     }
 

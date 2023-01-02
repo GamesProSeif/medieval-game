@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour
     public Image backGround;
     public Image Frame;
     public TextMeshProUGUI h;
-    public StatsController stats;
+    private StatsController stats;
     // Start is called before the first frame update
     void Start()
     {

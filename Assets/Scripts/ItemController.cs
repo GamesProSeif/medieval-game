@@ -38,18 +38,12 @@ public class ItemController : MonoBehaviour
 
     void updateUI()
     {
-        if (findByName("Scitmar") != null)   
-            image1.gameObject.SetActive(true);
-        if (findByName("Bow") != null)
-            image2.gameObject.SetActive(true);
-        if (findByName("FireGrenade") != null)
-            image3.gameObject.SetActive(true);
-        if (findByName("HealthPotion") != null)
-            image4.gameObject.SetActive(true);
-        if (findByName("SpeedPotion") != null)
-            image5.gameObject.SetActive(true);
-        if (findByName("StrengthPotion") != null)
-            image6.gameObject.SetActive(true);
+        image1.gameObject.SetActive(findByName("Scitmar") != null);
+        image2.gameObject.SetActive(findByName("Bow") != null);
+        image3.gameObject.SetActive(findByName("FireGrenade") != null);
+        image4.gameObject.SetActive(findByName("HealthPotion") != null);
+        image5.gameObject.SetActive(findByName("SpeedPotion") != null);
+        image6.gameObject.SetActive(findByName("StrengthPotion") != null);
     }
 
     public InventoryItem findByName(string name)
@@ -73,10 +67,16 @@ public class ItemController : MonoBehaviour
     public void addToList(InventoryItem item)
     {
         if (item.stackable && findByName(item.itemName) != null)
+        {
             findByName(item.itemName).count += item.count;
+        }
         else
+        {
+            Debug.Log(item.itemName);
             items.Add(item);
+        }
         updateUI();
+        Debug.Log(findByName("Bow"));
     }
 
     public void decrementCount(InventoryItem item)

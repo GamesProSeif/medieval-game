@@ -140,7 +140,8 @@ public class CombatController : MonoBehaviour
             weaponSettings = swordSettings;
             BladeWeaponSettings settings = (BladeWeaponSettings)weaponSettings;
 
-            var collisions = Physics.OverlapSphere(transform.position, settings.range);
+            var collisions = Physics.OverlapSphere(transform.position
+            + transform.forward * (swordSettings.range), settings.range);
             
             foreach (var collision in collisions)
             {

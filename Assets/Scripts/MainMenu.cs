@@ -13,11 +13,14 @@ public class MainMenu : MonoBehaviour
     public GameObject Fade;
     private bool startButtonClicked;
     private float elapsedTime = 0;
+    private AudioSource song;
+
     public void StartGame()
     {
         startButtonClicked = true;
         anim.SetBool("gameStart", true);
         Fade.SetActive(true); 
+        song = GameObject.Find("Main Camera").GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -33,6 +36,7 @@ public class MainMenu : MonoBehaviour
             else if (elapsedTime > 3 && elapsedTime < 5)
             {
                 anim2.SetBool("fadeOut", true);
+                song.volume -= Time.deltaTime * 0.4f;
             }
         }  
        

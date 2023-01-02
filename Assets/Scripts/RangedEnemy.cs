@@ -31,9 +31,8 @@ public class RangedEnemy : EnemyBase
         {
             readyToAttack = false;
             Invoke(nameof(ResetAttack), attackCooldown);
-            Vector3 offset = new Vector3(0, 1.4f, 0);
-            Vector3 currentPosition = transform.position + transform.forward * 2 + offset;
-            Vector3 playerPosition = playerTransform.position + offset;
+            Vector3 currentPosition = transform.position + transform.forward * 2 + new Vector3(0, 0.3f, 0);
+            Vector3 playerPosition = playerTransform.position;
             Vector3 arrowDirection = (playerPosition - currentPosition).normalized;
 
             // Attack Phase

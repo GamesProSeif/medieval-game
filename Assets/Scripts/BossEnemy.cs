@@ -40,9 +40,8 @@ public class BossEnemy : EnemyBase
     {
         for (int i = 0; i < 5; i++)
         {
-            Vector3 offset = new Vector3(0, 1.4f, 0);
-            Vector3 currentPosition = transform.position + transform.forward * 2 + offset;
-            Vector3 playerPosition = playerTransform.position + offset;
+            Vector3 currentPosition = transform.position + transform.forward * 2 + new Vector3(0, 1.3f, 0);
+            Vector3 playerPosition = playerTransform.position;
             Vector3 arrowDirection = (playerPosition - currentPosition).normalized;
 
             // Attack Phase
