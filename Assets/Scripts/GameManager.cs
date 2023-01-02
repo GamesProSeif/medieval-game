@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     private PlayerHealth playerHealth;
     private GameObject[] wells;
     private bool wellRestoring = false;
+    private bool reloading = false;
 
     [Header("Settings")]
     public float wellRestoreRadius = 5;
@@ -37,6 +39,12 @@ public class GameManager : MonoBehaviour
             var colliders = Physics.OverlapSphere(well.transform.position, wellRestoreRadius, whatIsPlayer);
             if (colliders.Length > 0)
                 WellRestore();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !reloading)
+        {
+            reloading = true;
+            SceneManager.LoadScene("level 1");
         }
     }
 

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Runtime.InteropServices;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class CombatController : MonoBehaviour
 {

@@ -12,8 +12,6 @@ public class BossEnemy : EnemyBase
     public float force;
     public GameObject objectToThrow;
 
-
-   
     protected override void Idle()
     {
         transform.LookAt(playerTransform);
@@ -21,7 +19,8 @@ public class BossEnemy : EnemyBase
 
     protected override void ChasePlayer()
     {
-        Animator animator = GameObject.Find("BossBody").gameObject.GetComponent<Animator>();
+        Animator animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
+
         agent.SetDestination(playerTransform.position);
         animator.SetFloat("Speedf", agent.speed);
     }
@@ -43,7 +42,7 @@ public class BossEnemy : EnemyBase
 
     IEnumerator AttackCoroutine()
     {
-        Animator animator = GameObject.Find("BossBody").gameObject.GetComponent<Animator>();
+        Animator animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
         for (int i = 0; i < 5; i++)
         {
             animator.SetBool("isAttacking", true);
