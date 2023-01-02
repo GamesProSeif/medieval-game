@@ -45,6 +45,7 @@ public class ItemController : MonoBehaviour
 
     void updateUI()
     {
+        if (items.Count == 0) hideUI();
         scitmarImage.gameObject.SetActive(findByName("Scitmar") != null);
         bowImage.gameObject.SetActive(findByName("Bow") != null);
         arrowAmmoText.gameObject.SetActive(findByName("Bow") != null && findByName("Arrow") != null);
@@ -65,6 +66,22 @@ public class ItemController : MonoBehaviour
         strengthPotionImage.gameObject.SetActive(findByName("StrengthPotion") != null);
         strengthPotionCount.gameObject.SetActive(findByName("StrengthPotion") != null);
         strengthPotionCount.text = findByName("StrengthPotion") != null ? findByName("StrengthPotion").count.ToString() : "0";
+    }
+
+    void hideUI()
+    {
+        scitmarImage.gameObject.SetActive(false);
+        bowImage.gameObject.SetActive(false);
+        arrowAmmoText.gameObject.SetActive(false);
+        fireGrenadeImage.gameObject.SetActive(false);
+        fireGrenadeAmmoText.gameObject.SetActive(false);
+        healthPotionImage.gameObject.SetActive(false);
+        healthPotionCount.gameObject.SetActive(false);
+        speedPotionImage.gameObject.SetActive(false);
+        speedPotionCount.gameObject.SetActive(false);
+        strengthPotionImage.gameObject.SetActive(false);
+        strengthPotionCount.gameObject.SetActive(false);
+        
     }
 
     public InventoryItem findByName(string name)

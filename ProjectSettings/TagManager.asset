@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - Door
   - Well
+  - Boss
+  - RangedEnemy
   layers:
   - Default
   - TransparentFX

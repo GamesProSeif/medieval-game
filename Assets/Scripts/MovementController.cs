@@ -6,6 +6,7 @@ public class MovementController : MonoBehaviour
 {
     private Rigidbody rb;
     private Transform followTransform;
+    private Animator animator;
     private bool isGrounded = true;
     private Vector3 playerMovementInput = Vector3.zero;
     private Vector2 look = Vector2.zero;
@@ -28,6 +29,7 @@ public class MovementController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GameObject.Find("PlayerBody").gameObject.GetComponent<Animator>();
         followTransform = GameObject.Find("Neck").transform;
     }
 
@@ -54,6 +56,8 @@ public class MovementController : MonoBehaviour
         else rb.drag = 0;
 
         SpeedControl();
+        CheckMoveDirection();
+        animator.SetFloat("Speedf", rb.velocity.magnitude);
     }
 
     void MovePlayer()
@@ -101,6 +105,41 @@ public class MovementController : MonoBehaviour
         #endregion
     }
 
+    void CheckMoveDirection()
+    {
+        //checking what direction the user is moving in for the animation to take place
+        //pressing one of the keys disables the others (if better way found please implement ana dma8y wag3any)
+        if(Input.GetKey(KeyCode.D))
+        {
+            animator.SetBool("isMovingRight", true);
+            animator.SetBool("isMovingBackwards",false);
+            animator.SetBool("isMovingLeft", false);
+            animator.SetBool("isMovingForward", false);
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            animator.SetBool("isMovingLeft", true);
+            animator.SetBool("isMovingRight", false);
+            animator.SetBool("isMovingForward", false);
+            animator.SetBool("isMovingBackwards", false);
+        }
+        else if (Input.GetKey(KeyCode.W))
+        {
+            animator.SetBool("isMovingForward", true);
+            animator.SetBool("isMovingBackwards", false);
+            animator.SetBool("isMovingLeft", false);
+            animator.SetBool("isMovingRight", false);
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            animator.SetBool("isMovingBackwards", true);
+            animator.SetBool("isMovingForward", false);
+            animator.SetBool("isMovingRight",false);
+            animator.SetBool("isMovingLeft", false);
+           
+        }
+       
+    }
     void SpeedControl()
     {
         // Calculating the Velocity of the player 
@@ -111,6 +150,7 @@ public class MovementController : MonoBehaviour
             Vector3 limitedVelocity = flatVelocity.normalized * Speed;
             rb.velocity =
                 new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
+            
         }
     }
 

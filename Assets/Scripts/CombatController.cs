@@ -8,7 +8,7 @@ using static UnityEditor.Progress;
 
 public class CombatController : MonoBehaviour
 {
-    public enum Weapon { Sword, Bow, FireGrenade }
+    public enum Weapon { Sword, Bow, FireGrenade, None }
     public Weapon currentWeapon = Weapon.Bow;
     private StatsController playerStats;
     private bool readyToAttack = true;
@@ -19,6 +19,7 @@ public class CombatController : MonoBehaviour
     private ItemController itemController;
     private PlayerHealth playerHealth;
     private MovementController movementController;
+    private Animator animator;
     [Header("Keys")]
     public KeyCode attack = KeyCode.Mouse0;
     public KeyCode equipSword = KeyCode.Alpha1;
@@ -32,6 +33,8 @@ public class CombatController : MonoBehaviour
     [Header("References")]
     public GameObject attackPoint;
     public GameObject arrowPrefab;
+    public GameObject swordPrefab;
+    public GameObject bowPrefab;
     public GameObject fireGrenadePrefab;
     public GameObject fireParticlesPrefab;
     public Transform cam;
@@ -90,6 +93,8 @@ public class CombatController : MonoBehaviour
         itemController = GetComponent<ItemController>();
         playerHealth = GetComponent<PlayerHealth>();
         movementController = GetComponent<MovementController>();
+        animator = GameObject.Find("PlayerBody").gameObject.GetComponent<Animator>();
+        currentWeapon = Weapon.None;
     }
     private void Update()
     {
@@ -98,9 +103,13 @@ public class CombatController : MonoBehaviour
             Attack();
 
         if (Input.GetKeyDown(equipSword))
-            EquipWeapon(Weapon.Sword);
+        {
+            EquipWeapon(Weapon.Sword); 
+        }
         else if (Input.GetKeyDown(equipBow))
+        {
             EquipWeapon(Weapon.Bow);
+        }
         else if (Input.GetKeyDown(equipFireGrenade))
             EquipWeapon(Weapon.FireGrenade);
         else if (Input.GetKeyDown(drinkHealthPotion))
@@ -109,29 +118,54 @@ public class CombatController : MonoBehaviour
             DrinkPotion(PotionType.Speed);
         else if (Input.GetKeyDown(drinkBuffPotion))
             DrinkPotion(PotionType.Strength);
+        
     }
 
     private void EquipWeapon(Weapon weapon)
     {
-        switch(weapon)
+        switch (weapon)
         {
             case Weapon.Sword:
-                if (itemController.findByName("Scitmar") == null) return;
+                if (itemController.findByName("Scitmar") == null)
+                { 
+                    return;
+                }
+                animator.SetBool("isBowEquiped", false);
+                bowPrefab.SetActive(false);
+                animator.SetBool("isSwordEquiped", true);
+                swordPrefab.SetActive(true);
+               
                 break;
             case Weapon.Bow:
-                if (itemController.findByName("Bow") == null) return;
+                if (itemController.findByName("Bow") == null)
+                {
+                    return;
+                }
+                animator.SetBool("isSwordEquiped", false);
+                swordPrefab.SetActive(false);
+                animator.SetBool("isBowEquiped", true);
+                bowPrefab.SetActive(true);
+                
                 break;
+
             case Weapon.FireGrenade:
                 if (itemController.findByName("FireGrenade") == null || itemController.findByName("FireGrenade").count == 0) return;
+                swordPrefab.SetActive(false);
+                bowPrefab.SetActive(false);
                 break;
         }
         currentWeapon = weapon;
+        if (currentWeapon == Weapon.Sword)
+            animator.SetBool("currentWeaponSword", true);
+        else if (currentWeapon == Weapon.Bow)
+            animator.SetBool("currentWeaponBow", true);
     }
 
     private void Attack()
     {
+        if (currentWeapon == Weapon.None) return;
         if (!readyToAttack) return;
-
+        animator.SetBool("isAttacking", true);
         readyToAttack = false;
         float strengthModifer = GetComponent<StatsController>().strength;
         WeaponSettings weaponSettings = null;
@@ -146,8 +180,8 @@ public class CombatController : MonoBehaviour
             foreach (var collision in collisions)
             {
                 if (collision.GetComponent<StatsController>() == null || collision.name == "Player") continue;
-                collision.GetComponent<StatsController>()
-                    .TakeDamage(Convert.ToInt32(settings.damage * playerStats.strength), gameObject);
+                    collision.GetComponent<StatsController>()
+                             .TakeDamage(Convert.ToInt32(settings.damage * playerStats.strength), gameObject);
             }
         }
         else
@@ -178,6 +212,7 @@ public class CombatController : MonoBehaviour
             ProjectileAddon projAddon = projectile.GetComponent<ProjectileAddon>();
             projAddon.SetInitiator(gameObject, rangedSettings.damage);
             thrownProjectiles.Add(projectile);
+            animator.SetBool("isAttacking", true);
             if (thrownProjectiles.Count > maxProjectiles)
             {
                 GameObject firstProjectile = thrownProjectiles[0];
@@ -212,6 +247,7 @@ public class CombatController : MonoBehaviour
     private void ResetAttack()
     {
         readyToAttack = true;
+        animator.SetBool("isAttacking", false);
     }
 
     private void DrinkPotion(PotionType potion)

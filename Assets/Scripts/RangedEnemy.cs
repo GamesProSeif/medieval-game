@@ -24,6 +24,7 @@ public class RangedEnemy : EnemyBase
     protected override void AttackPlayer()
     {
         // Fixed position
+
         agent.SetDestination(transform.position);
         transform.LookAt(playerTransform);
 

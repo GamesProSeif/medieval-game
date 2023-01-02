@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class BossEnemy : EnemyBase
 {
+    Animator animator;
     [Header("Ranged Settings")]
     public int attackCooldown;
     public int damage;
     public float force;
     public GameObject objectToThrow;
 
+
+   
     protected override void Idle()
     {
         transform.LookAt(playerTransform);
@@ -18,7 +21,9 @@ public class BossEnemy : EnemyBase
 
     protected override void ChasePlayer()
     {
+        Animator animator = GameObject.Find("BossBody").gameObject.GetComponent<Animator>();
         agent.SetDestination(playerTransform.position);
+        animator.SetFloat("Speedf", agent.speed);
     }
 
     protected override void AttackPlayer()
@@ -26,9 +31,9 @@ public class BossEnemy : EnemyBase
         // Fixed position
         agent.SetDestination(transform.position);
         transform.LookAt(playerTransform);
-
         if (readyToAttack)
         {
+           
             readyToAttack = false;
             Invoke(nameof(ResetAttack), attackCooldown);
 
@@ -38,8 +43,10 @@ public class BossEnemy : EnemyBase
 
     IEnumerator AttackCoroutine()
     {
+        Animator animator = GameObject.Find("BossBody").gameObject.GetComponent<Animator>();
         for (int i = 0; i < 5; i++)
         {
+            animator.SetBool("isAttacking", true);
             Vector3 currentPosition = transform.position + transform.forward * 2 + new Vector3(0, 1.3f, 0);
             Vector3 playerPosition = playerTransform.position;
             Vector3 arrowDirection = (playerPosition - currentPosition).normalized;
@@ -53,6 +60,8 @@ public class BossEnemy : EnemyBase
 
             projectileRb.AddForce(arrowDirection * force, ForceMode.Impulse);
             yield return new WaitForSeconds(0.2f);
+            animator.SetBool("isAttacking", false);
         }
+        
     }
 }

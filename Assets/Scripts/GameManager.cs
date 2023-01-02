@@ -61,9 +61,9 @@ public class GameManager : MonoBehaviour
         InventoryItem[] items =
         {
             new InventoryItem("Scitmar", 1, null, false),
-            new InventoryItem("Arrow", 25, combatController.arrowPrefab, true),
+            new InventoryItem("Arrow", 50, combatController.arrowPrefab, true),
             new InventoryItem("FireGrenade", 10, combatController.fireGrenadePrefab, true),
-            new InventoryItem("HealthPotion", 5, null, true),
+            new InventoryItem("HealthPotion", 10, null, true),
             new InventoryItem("SpeedPotion", 5, null, true),
             new InventoryItem("StrengthPotion", 5, null, true),
 
