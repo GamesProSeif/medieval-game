@@ -47,7 +47,7 @@ public class BossEnemy : EnemyBase
         {
             animator.SetBool("isAttacking", true);
             Vector3 currentPosition = transform.position + transform.forward * 2 + new Vector3(0, 1.3f, 0);
-            Vector3 playerPosition = playerTransform.position;
+            Vector3 playerPosition = playerTransform.position + new Vector3(0, 0.6f, 0);
             Vector3 arrowDirection = (playerPosition - currentPosition).normalized;
 
             // Attack Phase

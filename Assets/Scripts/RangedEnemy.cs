@@ -37,7 +37,7 @@ public class RangedEnemy : EnemyBase
             readyToAttack = false;
             Invoke(nameof(ResetAttack), attackCooldown);
             Vector3 currentPosition = transform.position + transform.forward * 2 + new Vector3(0, 0.3f, 0);
-            Vector3 playerPosition = playerTransform.position;
+            Vector3 playerPosition = playerTransform.position + new Vector3(0, 0.6f, 0);
             Vector3 arrowDirection = (playerPosition - currentPosition).normalized;
 
             // Attack Phase
@@ -56,6 +56,6 @@ public class RangedEnemy : EnemyBase
         base.ResetAttack();
 
         Animator animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
-        animator.SetBool("isAttacking", true);
+        animator.SetBool("isAttacking", false);
     }
 }
