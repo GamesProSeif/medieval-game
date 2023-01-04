@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     public float wellRestoreRadius = 5;
     public float wellRestoreCooldown;
     public LayerMask whatIsPlayer;
+    public GameObject gameOverText;
 
     //@TODO: implement settings for global variables (ie: healthPotionMultiplier)
 
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        // Handle Well Range for Restore
         foreach (var well in wells)
         {
             var colliders = Physics.OverlapSphere(well.transform.position, wellRestoreRadius, whatIsPlayer);
@@ -41,13 +44,23 @@ public class GameManager : MonoBehaviour
                 WellRestore();
         }
 
+        // Restart Game
         if (Input.GetKeyDown(KeyCode.Escape) && !reloading)
         {
             reloading = true;
             SceneManager.LoadScene("level 1");
         }
+
+        // Show mouse and game over screen
+        if (statsController.killed)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+        gameOverText.SetActive(statsController.killed);
     }
 
+    // Well Restore implementation
     private void WellRestore()
     {
         if (wellRestoring) return;
@@ -59,11 +72,19 @@ public class GameManager : MonoBehaviour
         Invoke(nameof(ResetWellRestore), wellRestoreCooldown);
     }
 
+    // For cooldown
     private void ResetWellRestore()
     {
         wellRestoring = false;
     }
 
+    // Back to menu button
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    // Add starter items
     private void AddInventoryItems()
     {
         InventoryItem[] items =
@@ -81,6 +102,7 @@ public class GameManager : MonoBehaviour
             itemController.addToList(item);
     }
 
+    // Used for debugging to show well restore range
     private void OnDrawGizmosSelected()
     {
         wells = GameObject.FindGameObjectsWithTag("Well");
