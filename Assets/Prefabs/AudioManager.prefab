@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1978823072884699561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1978823072884699543}
+  - component: {fileID: 1978823072884699560}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1978823072884699543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978823072884699561}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1978823072884699560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978823072884699561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d5aff615a9e8614eaa0e4661f579d3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterVolume: 1
+  sounds:
+  - name: MainMenuMusic
+    clip: {fileID: 8300000, guid: 698e92c7d4380fa4686cd2d4f5c7abc2, type: 3}
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+    loop: 1
+  - name: BossFightMusic
+    clip: {fileID: 8300000, guid: 26681a469a67fe84c890fb47c136972e, type: 3}
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+    loop: 1
+  - name: PlayerDeath
+    clip: {fileID: 8300000, guid: 3bb185dac190cb54abcdf8d96e45fb95, type: 3}
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: PlayerHurt
+    clip: {fileID: 8300000, guid: 6af08271aee94884ebac5b84e896a541, type: 3}
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: SwordAttack
+    clip: {fileID: 8300000, guid: 61fbdbe1918016a479b780f08785786b, type: 3}
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: SwordDraw
+    clip: {fileID: 8300000, guid: 98dd90dcb0a1c684189335331c6f0c4b, type: 3}
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: MolotovBreak
+    clip: {fileID: 8300000, guid: a41b3da08c791fd4eb632b0c3e38f181, type: 3}
+    volume: 0.404
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: EnemyHurt
+    clip: {fileID: 8300000, guid: 9f887194df56d35408186959cdaad521, type: 3}
+    volume: 0.404
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0

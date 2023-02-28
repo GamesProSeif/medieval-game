@@ -32,11 +32,16 @@ public class StatsController : MonoBehaviour
     public void TakeDamage(int damage, GameObject damagedBy)
     {
         if (killed) return;
-        if(gameObject.tag == "Player")animator.SetBool("isHit", true);
+        if(gameObject.tag == "Player")
+            animator.SetBool("isHit", true);
         health -= damage;
         Invoke(nameof(resetHit), 1);
         if (health <= 0)
             KillEntity(damagedBy);
+        else if (gameObject.tag == "Player")
+            FindObjectOfType<AudioManager>().Play("PlayerHurt");
+        else if (gameObject.tag == "Enemy")
+            FindObjectOfType<AudioManager>().Play("EnemyHurt");
     }
     
     private void resetHit()
@@ -58,8 +63,8 @@ public class StatsController : MonoBehaviour
         killed = true;
         if (gameObject.tag == "Player")
         {
-            //@TODO: Player death animation (done)
             animator.SetBool("isDead", true);
+            FindObjectOfType<AudioManager>().Play("PlayerDeath");
             MovementController moveController = GetComponent<MovementController>();
             CombatController combatController = GetComponent<CombatController>();
             moveController.enabled = false;
@@ -67,7 +72,7 @@ public class StatsController : MonoBehaviour
         }
         else if (gameObject.tag == "Enemy" || gameObject.tag == "Boss" || gameObject.tag == "RangedEnemy")
         {
-            //@TODO: Enemy death animation
+            FindObjectOfType<AudioManager>().Play("PlayerDeath");
             animator.SetBool("isDead", true);
             Invoke(nameof(destroy), 3);
             if (killedBy.name == "Player")

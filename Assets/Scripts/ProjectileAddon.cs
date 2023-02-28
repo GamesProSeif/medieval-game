@@ -65,7 +65,7 @@ public class ProjectileAddon : MonoBehaviour
             if (collision.gameObject.tag == "Ground")
             {
                 Instantiate(fireParticles, transform.position, fireParticles.transform.rotation);
-
+                FindObjectOfType<AudioManager>().Play("MolotovBreak");
                 Destroy(gameObject);
                 rb.isKinematic = true;
                 transform.SetParent(collision.transform);

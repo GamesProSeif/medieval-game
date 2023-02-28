@@ -57,6 +57,7 @@ public class CombatController : MonoBehaviour
     {
         public float forwardForce;
         public float upwardForce;
+        public float offsetDelay;
     }
 
     [Serializable]
@@ -100,15 +101,10 @@ public class CombatController : MonoBehaviour
         if (playerStats.killed) return;
         if (Input.GetKeyDown(attack))
             Attack();
-
         if (Input.GetKeyDown(equipSword))
-        {
             EquipWeapon(Weapon.Sword); 
-        }
         else if (Input.GetKeyDown(equipBow))
-        {
             EquipWeapon(Weapon.Bow);
-        }
         else if (Input.GetKeyDown(equipFireGrenade))
             EquipWeapon(Weapon.FireGrenade);
         else if (Input.GetKeyDown(drinkHealthPotion))
@@ -117,7 +113,6 @@ public class CombatController : MonoBehaviour
             DrinkPotion(PotionType.Speed);
         else if (Input.GetKeyDown(drinkBuffPotion))
             DrinkPotion(PotionType.Strength);
-        
     }
 
     private void EquipWeapon(Weapon weapon)
@@ -125,39 +120,40 @@ public class CombatController : MonoBehaviour
         switch (weapon)
         {
             case Weapon.Sword:
-                if (itemController.findByName("Scitmar") == null)
-                { 
+                if (itemController.findByName("Scitmar") == null || currentWeapon == Weapon.Sword)
                     return;
-                }
                 animator.SetBool("isBowEquiped", false);
-                bowPrefab.SetActive(false);
                 animator.SetBool("isSwordEquiped", true);
+                ResetActivePrefabs(Weapon.Sword);
+                animator.SetBool("currentWeaponSword", true);
+                FindObjectOfType<AudioManager>().Play("SwordDraw");
                 swordPrefab.SetActive(true);
-               
                 break;
             case Weapon.Bow:
-                if (itemController.findByName("Bow") == null)
-                {
+                if (itemController.findByName("Bow") == null || currentWeapon == Weapon.Bow)
                     return;
-                }
                 animator.SetBool("isSwordEquiped", false);
-                swordPrefab.SetActive(false);
                 animator.SetBool("isBowEquiped", true);
+                animator.SetBool("currentWeaponBow", true);
+                ResetActivePrefabs(Weapon.Bow);
                 bowPrefab.SetActive(true);
-                
                 break;
-
             case Weapon.FireGrenade:
-                if (itemController.findByName("FireGrenade") == null || itemController.findByName("FireGrenade").count == 0) return;
-                swordPrefab.SetActive(false);
-                bowPrefab.SetActive(false);
+                if (itemController.findByName("FireGrenade") == null
+                    || itemController.findByName("FireGrenade").count == 0
+                    || currentWeapon == Weapon.FireGrenade)
+                    return;
+                ResetActivePrefabs(Weapon.FireGrenade);
                 break;
         }
         currentWeapon = weapon;
-        if (currentWeapon == Weapon.Sword)
-            animator.SetBool("currentWeaponSword", true);
-        else if (currentWeapon == Weapon.Bow)
-            animator.SetBool("currentWeaponBow", true);
+    }
+
+    private void ResetActivePrefabs(Weapon weapon)
+    {
+        GameObject[] prefabs = { swordPrefab, bowPrefab };
+        foreach (GameObject prefab in prefabs)
+            prefab.SetActive(false);
     }
 
     private void Attack()
@@ -175,13 +171,18 @@ public class CombatController : MonoBehaviour
 
             var collisions = Physics.OverlapSphere(transform.position
             + transform.forward * (swordSettings.range), settings.range);
-            
+
+            bool hit = false;
             foreach (var collision in collisions)
             {
-                if (collision.GetComponent<StatsController>() == null || collision.name == "Player") continue;
-                    collision.GetComponent<StatsController>()
-                             .TakeDamage(Convert.ToInt32(settings.damage * playerStats.strength), gameObject);
+                if (collision.GetComponent<StatsController>() == null || collision.name == "Player")
+                    continue;
+                collision.GetComponent<StatsController>()
+                    .TakeDamage(Convert.ToInt32(settings.damage * playerStats.strength), gameObject);
+                hit = true;
             }
+            if (hit)
+                FindObjectOfType<AudioManager>().Play("SwordAttack");
         }
         else
         {
@@ -206,41 +207,48 @@ public class CombatController : MonoBehaviour
             }
             if (item == null || item.count <= 0) return;
             itemController.decrementCount(item);
-           
-            GameObject projectile = Instantiate(objectToThrow, attackPoint.transform.position, cam.transform.rotation * objectToThrow.transform.rotation);
-            ProjectileAddon projAddon = projectile.GetComponent<ProjectileAddon>();
-            projAddon.SetInitiator(gameObject, rangedSettings.damage);
-            thrownProjectiles.Add(projectile);
+
             animator.SetBool("isAttacking", true);
-            if (thrownProjectiles.Count > maxProjectiles)
-            {
-                GameObject firstProjectile = thrownProjectiles[0];
-                thrownProjectiles.Remove(firstProjectile);
-                Destroy(firstProjectile);
-            }
-
-            // Get rigidbody component
-            Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
-
-            // Calculate direction
-            Vector3 forceDirection = cam.transform.forward;
-
-            /*
-            RaycastHit hit;
-            if (Physics.Raycast(cam.position, cam.forward, out hit, 500f))
-            {
-                forceDirection = (hit.point - attackPoint.transform.position).normalized;
-            }
-            */
-
-            // Add force
-            Vector3 forceToAdd =
-                forceDirection * rangedSettings.forwardForce
-                + transform.up * rangedSettings.upwardForce;
-
-            projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
+            StartCoroutine(ThrowProjectile(objectToThrow, rangedSettings));
         }
         Invoke(nameof(ResetAttack), weaponSettings.cooldown);
+    }
+
+    private IEnumerator ThrowProjectile(GameObject objectToThrow, RangedWeaponSettings rangedSettings)
+    {
+        yield return new WaitForSeconds(rangedSettings.offsetDelay);
+
+        GameObject projectile = Instantiate(objectToThrow, attackPoint.transform.position, cam.transform.rotation * objectToThrow.transform.rotation);
+        ProjectileAddon projAddon = projectile.GetComponent<ProjectileAddon>();
+        projAddon.SetInitiator(gameObject, rangedSettings.damage);
+        thrownProjectiles.Add(projectile);
+        if (thrownProjectiles.Count > maxProjectiles)
+        {
+            GameObject firstProjectile = thrownProjectiles[0];
+            thrownProjectiles.Remove(firstProjectile);
+            Destroy(firstProjectile);
+        }
+
+        // Get rigidbody component
+        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+
+        // Calculate direction
+        Vector3 forceDirection = cam.transform.forward;
+
+        /*
+        RaycastHit hit;
+        if (Physics.Raycast(cam.position, cam.forward, out hit, 500f))
+        {
+            forceDirection = (hit.point - attackPoint.transform.position).normalized;
+        }
+        */
+
+        // Add force
+        Vector3 forceToAdd =
+            forceDirection * rangedSettings.forwardForce
+            + transform.up * rangedSettings.upwardForce;
+
+        projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
     }
 
     private void ResetAttack()
