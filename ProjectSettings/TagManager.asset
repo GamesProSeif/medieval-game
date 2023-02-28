@@ -11,6 +11,7 @@ TagManager:
   - Well
   - Boss
   - RangedEnemy
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Player
   - obsticle
   - Wall
-  - 
+  - Item
   - 
   - 
   - 
