@@ -7,6 +7,7 @@ public class MovementController : MonoBehaviour
     private Rigidbody rb;
     private Transform followTransform;
     private Animator animator;
+    private GameManager gameManager;
     private bool isGrounded = true;
     private Vector3 playerMovementInput = Vector3.zero;
     private Vector2 look = Vector2.zero;
@@ -30,13 +31,13 @@ public class MovementController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GameObject.Find("PlayerBody").gameObject.GetComponent<Animator>();
+        gameManager = GameObject.Find("GameManager").gameObject.GetComponent<GameManager>();
         followTransform = GameObject.Find("Neck").transform;
     }
 
     private void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        gameManager.DisableCurser();
     }
 
     private void FixedUpdate()

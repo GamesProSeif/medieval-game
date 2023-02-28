@@ -11,7 +11,7 @@ public class SelectionManger : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private Transform raySource;
 
-    private Transform mainSelection;
+    public Transform mainSelection;
     private Material defaultMat;
 
     private void Start()

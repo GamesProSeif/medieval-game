@@ -14,34 +14,45 @@ public class ItemController : MonoBehaviour
     public RawImage healthPotionImage;
     public RawImage speedPotionImage;
     public RawImage strengthPotionImage;
-
     public TextMeshProUGUI fireGrenadeAmmoText;
     public TextMeshProUGUI arrowAmmoText;
     public TextMeshProUGUI healthPotionCount;
     public TextMeshProUGUI speedPotionCount;
     public TextMeshProUGUI strengthPotionCount;
+    public TextMeshProUGUI pickup;
+    public SelectionManger selection;
 
-    private void OnCollisionEnter(Collision collision)
+    private void Update()
     {
-        if(collision.gameObject.GetComponent<Item>() != null) {
-            Item temp = collision.gameObject.GetComponent<Item>();
-            InventoryItem x = findByName(temp.itemName);
-            if (temp.stackable)
-            {           
-                if (x != null)
-                    x.count += temp.count;
-                else addToList(temp);
-            }
-            else
+       if (selection.mainSelection != null)
+        {
+            pickup.gameObject.SetActive(true);
+            if(Input.GetKey(KeyCode.E))
             {
-                if (x == null)
-                    addToList(temp);
-                else return;
+                if (selection.mainSelection.gameObject.GetComponent<Item>() != null)
+                {
+                    Item temp = selection.mainSelection.gameObject.GetComponent<Item>();
+                    InventoryItem x = findByName(temp.itemName);
+                    if (temp.stackable)
+                    {
+                        if (x != null)
+                            x.count += temp.count;
+                        else addToList(temp);
+                    }
+                    else
+                    {
+                        if (x == null)
+                            addToList(temp);
+                        else return;
 
+                    }
+                    Destroy(temp.gameObject);
+                }
             }
-            Destroy(temp.gameObject);
-        }      
+        }
+       else pickup.gameObject.SetActive(false);
     }
+
 
     void updateUI()
     {
