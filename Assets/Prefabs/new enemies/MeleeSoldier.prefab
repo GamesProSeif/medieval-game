@@ -31,8 +31,7 @@ Transform:
   m_LocalPosition: {x: 475.6012, y: 13.84, z: 240.38026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5516181186774370578}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 166.479, z: 0}
@@ -114,65 +113,3 @@ MonoBehaviour:
   xp: 20
   strength: 1
   killed: 0
---- !u!1001 &8993377498061953746
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 921302150230657228}
-    m_Modifications:
-    - target: {fileID: 273053349845139743, guid: 9dba7cd70c5bc3d4dabf58589a3d0b6e, type: 3}
-      propertyPath: m_Name
-      value: MeleeSoldier (12)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3477778090377630656, guid: 9dba7cd70c5bc3d4dabf58589a3d0b6e, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3477778090377630656, guid: 9dba7cd70c5bc3d4dabf58589a3d0b6e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 475.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 3477778090377630656, guid: 9dba7cd70c5bc3d4dabf58589a3d0b6e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 13.523
-      objectReference: {fileID: 0}
-    - target: {fileID: 3477778090377630656, guid: 9dba7cd70c5bc3d4dabf58589a3d0b6e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 269.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 3477778090377630656, guid: 9dba7cd70c5bc3d4dabf58589a3d0b6e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.117718905
-      objectReference: {fileID: 0}
-    - target: {fileID: 3477778090377630656, guid: 9dba7cd70c5bc3d4dabf58589a3d0b6e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3477778090377630656, guid: 9dba7cd70c5bc3d4dabf58589a3d0b6e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.993047
-      objectReference: {fileID: 0}
-    - target: {fileID: 3477778090377630656, guid: 9dba7cd70c5bc3d4dabf58589a3d0b6e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3477778090377630656, guid: 9dba7cd70c5bc3d4dabf58589a3d0b6e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3477778090377630656, guid: 9dba7cd70c5bc3d4dabf58589a3d0b6e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 166.479
-      objectReference: {fileID: 0}
-    - target: {fileID: 3477778090377630656, guid: 9dba7cd70c5bc3d4dabf58589a3d0b6e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9dba7cd70c5bc3d4dabf58589a3d0b6e, type: 3}
---- !u!4 &5516181186774370578 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3477778090377630656, guid: 9dba7cd70c5bc3d4dabf58589a3d0b6e, type: 3}
-  m_PrefabInstance: {fileID: 8993377498061953746}
-  m_PrefabAsset: {fileID: 0}
