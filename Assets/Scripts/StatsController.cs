@@ -24,6 +24,7 @@ public class StatsController : MonoBehaviour
         if (gameObject.tag == "Player") animator = GameObject.Find("PlayerBody").gameObject.GetComponent<Animator>();
         else if (gameObject.tag == "Boss") animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
         else if (gameObject.tag == "RangedEnemy") animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
+        else if (gameObject.tag == "Melee") animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
         else animator = GetComponent<Animator>();
         levelingSystem = GameObject.Find("Player").GetComponent<LevelingSystem>();
     }
@@ -70,7 +71,7 @@ public class StatsController : MonoBehaviour
             moveController.enabled = false;
             combatController.enabled = false;
         }
-        else if (gameObject.tag == "Enemy" || gameObject.tag == "Boss" || gameObject.tag == "RangedEnemy")
+        else if (gameObject.tag == "Enemy" || gameObject.tag == "Boss" || gameObject.tag == "RangedEnemy" || gameObject.tag == "Melee")
         {
             FindObjectOfType<AudioManager>().Play("PlayerDeath");
             animator.SetBool("isDead", true);

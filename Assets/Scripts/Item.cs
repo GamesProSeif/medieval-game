@@ -10,5 +10,12 @@ public class Item : MonoBehaviour
     public int count;
     public GameObject prefab;
     public bool stackable;
+    public bool rotatable;
 
+    private void Update()
+    {
+        if(!rotatable)
+            return;
+        gameObject.transform.rotation *= Quaternion.AngleAxis(1, Vector3.up);
+    }
 }

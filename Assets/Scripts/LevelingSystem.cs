@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class LevelingSystem : MonoBehaviour
 {
     public int level;
-    public int maxLevel = 5;
+    public int maxLevel = 10;
     public float currentxp;
     public float requiredxp;
     private float lerptimer;
@@ -19,6 +19,7 @@ public class LevelingSystem : MonoBehaviour
     public Image Frame;
     public TextMeshProUGUI lvl;
     public TextMeshProUGUI xp;
+    public StatsController stats;
     [Header("Multipliers")]
     [Range(1f,300f)]
     public float additionMultiplier = 300;
@@ -38,6 +39,7 @@ public class LevelingSystem : MonoBehaviour
         BackxPBar.fillAmount = currentxp / requiredxp;
         lvl.text = "level " + level;
         xp.text = currentxp + " / " + requiredxp;
+        stats = gameObject.GetComponent<StatsController>();
         
     }
 
@@ -127,6 +129,7 @@ public class LevelingSystem : MonoBehaviour
         GetComponent<PlayerHealth>().IncreaseHealth(level);
         requiredxp = CalculateRequiredXp();
         lvl.text = "level " + level;
+        stats.strength += (float)0.15 * level;
     }
     private int CalculateRequiredXp()
     {

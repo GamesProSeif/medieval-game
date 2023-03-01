@@ -12,6 +12,7 @@ TagManager:
   - Boss
   - RangedEnemy
   - Item
+  - Melee
   layers:
   - Default
   - TransparentFX
