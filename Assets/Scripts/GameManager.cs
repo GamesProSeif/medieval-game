@@ -126,6 +126,9 @@ public class GameManager : MonoBehaviour
     public void BackToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+        EnableCurser();
     }
 
     public void RestartGame()

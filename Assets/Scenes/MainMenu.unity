@@ -4152,7 +4152,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Adamore
+  m_text: Jowayerya
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 202519d1b72a75443a2e0207ee0bc4cb, type: 2}
   m_sharedMaterial: {fileID: -183146340026641575, guid: 202519d1b72a75443a2e0207ee0bc4cb, type: 2}
