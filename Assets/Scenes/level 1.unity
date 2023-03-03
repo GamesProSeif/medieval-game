@@ -398,6 +398,11 @@ MonoBehaviour:
   xp: 100
   strength: 1.35
   killed: 0
+--- !u!4 &26493287 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+  m_PrefabInstance: {fileID: 1485271286}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &32761364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8f464f96895e1134c9c1fcf9515a18da, type: 3}
@@ -571,7 +576,7 @@ Transform:
   m_Children:
   - {fileID: 1225408269}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &44080485
 GameObject:
@@ -900,7 +905,7 @@ Transform:
   - {fileID: 1780371725}
   - {fileID: 1706565404}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &52894094 stripped
 Transform:
@@ -1155,11 +1160,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1408085138}
     m_Modifications:
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_RootOrder
-      value: 36
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1248,6 +1253,10 @@ PrefabInstance:
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
       value: MeleeSoldier (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: m_TagString
+      value: Melee
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
@@ -2031,11 +2040,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1408085138}
     m_Modifications:
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_RootOrder
-      value: 33
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2124,6 +2133,10 @@ PrefabInstance:
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
       value: MeleeSoldier (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: m_TagString
+      value: Melee
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
@@ -4077,7 +4090,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 90de6738a7d5d6445a7e8189e56d1083, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90de6738a7d5d6445a7e8189e56d1083, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6432,7 +6445,7 @@ Transform:
   - {fileID: 1037957578}
   - {fileID: 865199227}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &338317235 stripped
 GameObject:
@@ -7334,6 +7347,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da386bbbc4d7a40419e5fa2ac2e1eb35, type: 3}
+--- !u!4 &362878455 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+  m_PrefabInstance: {fileID: 1697825269}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &363047049
 GameObject:
   m_ObjectHideFlags: 0
@@ -7656,11 +7674,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1408085138}
     m_Modifications:
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_RootOrder
-      value: 28
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7745,6 +7763,10 @@ PrefabInstance:
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
       value: MeleeSoldier (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: m_TagString
+      value: Melee
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
@@ -7910,11 +7932,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1408085138}
     m_Modifications:
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_RootOrder
-      value: 22
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7930,7 +7952,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9971197
+      value: 0.9971198
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalRotation.x
@@ -7938,7 +7960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.07584341
+      value: -0.075843416
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalRotation.z
@@ -7979,6 +8001,10 @@ PrefabInstance:
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
       value: MeleeSoldier (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: m_TagString
+      value: Melee
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
@@ -9346,6 +9372,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bb79889473c294348b69ec128f22b615, type: 3}
   m_PrefabInstance: {fileID: 305072816}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &476793623 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+  m_PrefabInstance: {fileID: 1409346387}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &480592188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9918,11 +9949,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1408085138}
     m_Modifications:
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_RootOrder
-      value: 35
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10011,6 +10042,10 @@ PrefabInstance:
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
       value: MeleeSoldier (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: m_TagString
+      value: Melee
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
@@ -10209,7 +10244,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &551060203
 PrefabInstance:
@@ -11366,6 +11401,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bb79889473c294348b69ec128f22b615, type: 3}
   m_PrefabInstance: {fileID: 81316611}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &636650341 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+  m_PrefabInstance: {fileID: 977593339}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &640907283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12041,7 +12081,7 @@ RectTransform:
   - {fileID: 1865546398}
   - {fileID: 2001004657}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12420,11 +12460,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1408085138}
     m_Modifications:
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_RootOrder
-      value: 32
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12513,6 +12553,10 @@ PrefabInstance:
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
       value: MeleeSoldier (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: m_TagString
+      value: Melee
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
@@ -13429,6 +13473,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 783238632}
   m_CullTransparentMesh: 1
+--- !u!4 &783469357 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+  m_PrefabInstance: {fileID: 76874918}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &786426218
 GameObject:
   m_ObjectHideFlags: 0
@@ -13584,6 +13633,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb79889473c294348b69ec128f22b615, type: 3}
+--- !u!4 &786955432 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+  m_PrefabInstance: {fileID: 1893313073}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &787652843 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+  m_PrefabInstance: {fileID: 1654375491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &795307678 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7403814276646346088, guid: 80ccd88dea73cdf469ba9e9f1f0b973c, type: 3}
@@ -14552,6 +14611,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5226350521091462140, guid: 80ccd88dea73cdf469ba9e9f1f0b973c, type: 3}
+--- !u!4 &848177802 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+  m_PrefabInstance: {fileID: 104960300}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &850872824 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bb79889473c294348b69ec128f22b615, type: 3}
@@ -16368,11 +16432,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1408085138}
     m_Modifications:
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_RootOrder
-      value: 26
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16437,6 +16501,10 @@ PrefabInstance:
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
       value: MeleeSoldier (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: m_TagString
+      value: Melee
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
@@ -16511,11 +16579,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1408085138}
     m_Modifications:
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_RootOrder
-      value: 34
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16604,6 +16672,10 @@ PrefabInstance:
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
       value: MeleeSoldier (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: m_TagString
+      value: Melee
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
@@ -16710,6 +16782,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8246494051924840529, guid: eb4463eea96e4a24296a8ff63d7ca6c2, type: 3}
+--- !u!4 &985346738 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+  m_PrefabInstance: {fileID: 1796238134}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &991929988
 GameObject:
   m_ObjectHideFlags: 0
@@ -17046,7 +17123,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1014663595
 GameObject:
@@ -17321,7 +17398,7 @@ Transform:
   - {fileID: 819841056}
   - {fileID: 2078867868}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1028116218
 PrefabInstance:
@@ -18864,11 +18941,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1408085138}
     m_Modifications:
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_RootOrder
-      value: 31
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18958,8 +19035,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeleeSoldier (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: m_TagString
+      value: Melee
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+--- !u!4 &1126379352 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+  m_PrefabInstance: {fileID: 2135986488}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1131329243
 GameObject:
   m_ObjectHideFlags: 0
@@ -19935,7 +20021,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1195385754 stripped
 Transform:
@@ -21702,6 +21788,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6153c8bd86272eb468f9fd2a3690e327, type: 3}
+--- !u!4 &1331513861 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+  m_PrefabInstance: {fileID: 1589823830}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1343100545 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e0a3e17a6f927fb428265e6c116a065e, type: 3}
@@ -21887,7 +21978,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 90de6738a7d5d6445a7e8189e56d1083, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90de6738a7d5d6445a7e8189e56d1083, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22457,6 +22548,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb79889473c294348b69ec128f22b615, type: 3}
+--- !u!4 &1390599258 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+  m_PrefabInstance: {fileID: 393281851}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1392201517
 GameObject:
   m_ObjectHideFlags: 0
@@ -22624,19 +22720,37 @@ Transform:
   - {fileID: 7889835152622780819}
   - {fileID: 7234044976273889676}
   - {fileID: 21035395}
+  - {fileID: 1900796938}
+  - {fileID: 1126379352}
+  - {fileID: 1390599258}
+  - {fileID: 362878455}
+  - {fileID: 26493287}
+  - {fileID: 985346738}
+  - {fileID: 1709221013}
+  - {fileID: 786955432}
+  - {fileID: 1867447979}
+  - {fileID: 476793623}
+  - {fileID: 1331513861}
+  - {fileID: 2129684707}
+  - {fileID: 1716603863}
+  - {fileID: 848177802}
+  - {fileID: 636650341}
+  - {fileID: 1749030772}
+  - {fileID: 783469357}
+  - {fileID: 787652843}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1409346387
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1408085138}
     m_Modifications:
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_RootOrder
-      value: 29
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22721,6 +22835,10 @@ PrefabInstance:
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
       value: MeleeSoldier (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: m_TagString
+      value: Melee
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
@@ -23125,7 +23243,6 @@ GameObject:
   - component: {fileID: 1450146405}
   - component: {fileID: 1450146408}
   - component: {fileID: 1450146407}
-  - component: {fileID: 1450146406}
   m_Layer: 5
   m_Name: Button (3)
   m_TagString: Untagged
@@ -23155,62 +23272,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -140}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1450146406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1450146404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1450146407}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1014285950}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: BackToMainMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1450146407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23894,11 +23955,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1408085138}
     m_Modifications:
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23963,6 +24024,10 @@ PrefabInstance:
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
       value: MeleeSoldier (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: m_TagString
+      value: Melee
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
@@ -25207,11 +25272,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1408085138}
     m_Modifications:
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_RootOrder
-      value: 30
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25301,6 +25366,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeleeSoldier (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: m_TagString
+      value: Melee
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
 --- !u!1001 &1595928468
@@ -25312,7 +25381,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2684312175388576324, guid: d4958227484245e4592c41ab2c02ad22, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2684312175388576324, guid: d4958227484245e4592c41ab2c02ad22, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25923,11 +25992,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1408085138}
     m_Modifications:
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_RootOrder
-      value: 37
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26016,6 +26085,10 @@ PrefabInstance:
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
       value: MeleeSoldier (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: m_TagString
+      value: Melee
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
@@ -26809,11 +26882,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1408085138}
     m_Modifications:
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26878,6 +26951,10 @@ PrefabInstance:
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
       value: MeleeSoldier (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: m_TagString
+      value: Melee
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
@@ -26999,6 +27076,11 @@ Transform:
   m_Father: {fileID: 50229936}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1709221013 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+  m_PrefabInstance: {fileID: 949568773}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1709386606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27157,7 +27239,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 83.95, y: -198.72, z: -207.389}
 --- !u!23 &1711174195
 MeshRenderer:
@@ -27201,6 +27283,11 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!4 &1716603863 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+  m_PrefabInstance: {fileID: 710743414}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1724895578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27508,6 +27595,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f464f96895e1134c9c1fcf9515a18da, type: 3}
+--- !u!4 &1749030772 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+  m_PrefabInstance: {fileID: 532595162}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1753591656
 GameObject:
   m_ObjectHideFlags: 0
@@ -27550,7 +27642,7 @@ Transform:
   - {fileID: 1836897475}
   - {fileID: 543450653094616650}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!136 &1753591658
 CapsuleCollider:
@@ -28219,11 +28311,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1408085138}
     m_Modifications:
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_RootOrder
-      value: 25
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28288,6 +28380,10 @@ PrefabInstance:
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
       value: MeleeSoldier (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: m_TagString
+      value: Melee
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
@@ -28357,7 +28453,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1814858423 stripped
 Transform:
@@ -28962,6 +29058,11 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!4 &1867447979 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+  m_PrefabInstance: {fileID: 380936704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1870725006 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: da386bbbc4d7a40419e5fa2ac2e1eb35, type: 3}
@@ -29156,7 +29257,7 @@ Transform:
   - {fileID: 1759331837}
   - {fileID: 1131329244}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1891556873
 PrefabInstance:
@@ -29220,11 +29321,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1408085138}
     m_Modifications:
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_RootOrder
-      value: 27
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalPosition.x
@@ -29290,6 +29391,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeleeSoldier (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: m_TagString
+      value: Melee
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
 --- !u!1 &1897033563 stripped
@@ -29311,6 +29416,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8246494051924840529, guid: eb4463eea96e4a24296a8ff63d7ca6c2, type: 3}
+--- !u!4 &1900796938 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+  m_PrefabInstance: {fileID: 5366799676605853546}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1904551050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29617,7 +29727,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1914207820
 MonoBehaviour:
@@ -33515,6 +33625,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3349659645174109055, guid: 80ccd88dea73cdf469ba9e9f1f0b973c, type: 3}
+--- !u!4 &2129684707 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+  m_PrefabInstance: {fileID: 1124377078}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2131672163
 GameObject:
   m_ObjectHideFlags: 0
@@ -33716,11 +33831,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1408085138}
     m_Modifications:
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalPosition.x
@@ -33736,7 +33851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9971197
+      value: 0.9971198
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalRotation.x
@@ -33744,7 +33859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.07584341
+      value: -0.075843416
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalRotation.z
@@ -33785,6 +33900,10 @@ PrefabInstance:
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
       value: MeleeSoldier (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: m_TagString
+      value: Melee
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
@@ -37824,7 +37943,7 @@ Transform:
   - {fileID: 1522220680555679275}
   - {fileID: 3933534350010648551}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -0.705, y: 94.266, z: 1.498}
 --- !u!33 &552054146827010657
 MeshFilter:
@@ -50717,7 +50836,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 2.113, y: 0, z: 0}
 --- !u!1 &3459305295038862250
 GameObject:
@@ -59631,11 +59750,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1408085138}
     m_Modifications:
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalPosition.x
@@ -59655,15 +59774,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -59700,6 +59819,10 @@ PrefabInstance:
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
       value: MeleeSoldier
+      objectReference: {fileID: 0}
+    - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: m_TagString
+      value: Melee
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
