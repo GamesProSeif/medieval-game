@@ -206,7 +206,10 @@ public class CombatController : MonoBehaviour
                 
             }
             if (item == null || item.count <= 0) return;
-            itemController.decrementCount(item);
+            {
+                itemController.decrementCount(item);
+                animator.SetBool("isAttacking", false);
+            }
 
             animator.SetBool("isAttacking", true);
             StartCoroutine(ThrowProjectile(objectToThrow, rangedSettings));

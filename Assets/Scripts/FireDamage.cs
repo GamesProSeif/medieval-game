@@ -13,7 +13,7 @@ public class FireDamage : MonoBehaviour
 
     private void Start()
     {
-        gameObjects = GetComponent<ColliderList>().collisions;
+        gameObjects = gameObject.GetComponent<ColliderList>().collisions;
         GameObject playerGameObject = GameObject.Find("Player");
         playerStats = playerGameObject.GetComponent<StatsController>();
         playerCombatController = playerGameObject.GetComponent<CombatController>();
@@ -32,14 +32,15 @@ public class FireDamage : MonoBehaviour
 
         if (damageElapsedTime >= 1)
         {
-            foreach (var gameObject in gameObjects)
+            foreach (var _object in gameObjects)
             {
+                Debug.Log(_object);
                 try
                 {
-                    StatsController gameObjectStats = gameObject.GetComponent<StatsController>();
+                    StatsController gameObjectStats = _object.GetComponent<StatsController>();
                     gameObjectStats.TakeDamage(
                         Convert.ToInt32(playerCombatController.fireGrenadeSettings.damage * playerStats.strength),
-                        gameObject);
+                        _object);
                 } catch { }
             }
             damageElapsedTime = 0;

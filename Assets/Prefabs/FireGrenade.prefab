@@ -129,3 +129,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireParticles: {fileID: 430943806706144120, guid: 9fc3f1b890463ec42ab52eadfd7d8980, type: 3}
   type: 1
+  initiator: {fileID: 0}

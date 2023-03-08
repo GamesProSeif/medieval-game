@@ -8,7 +8,7 @@ public class MeleeEnemy : EnemyBase
     [Header("Melee Settings")]
     public int damage;
     public int attackCooldown;
-    Animator animator;
+
     protected override void Idle()
     {
         transform.LookAt(playerTransform);
@@ -16,9 +16,7 @@ public class MeleeEnemy : EnemyBase
 
     protected override void ChasePlayer()
     {
-        animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
         agent.SetDestination(playerTransform.position);
-        animator.SetFloat("speedf", agent.speed);
     }
 
     protected override void AttackPlayer()
@@ -30,6 +28,7 @@ public class MeleeEnemy : EnemyBase
 
         if (readyToAttack)
         {
+
             readyToAttack = false;
             Invoke(nameof(ResetAttack), attackCooldown);
             animator.SetBool("isAttacking", false);

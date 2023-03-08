@@ -8,6 +8,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected NavMeshAgent agent;
     protected StatsController stats;
     protected Rigidbody rb;
+    protected Animator animator;
     protected float speed, groundDrag;
     protected bool readyToAttack;
 
@@ -23,10 +24,11 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void Awake()
     {
+        animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         stats = GetComponent<StatsController>();
         rb = GetComponent<Rigidbody>();
-
+    
         GameObject player = GameObject.Find("Player");
         playerStatsController = player.GetComponent<StatsController>();
         playerTransform = player.transform;
@@ -49,9 +51,22 @@ public abstract class EnemyBase : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange) Idle();
-        else if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        else if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        if (!playerInSightRange && !playerInAttackRange)
+        {
+            Idle();
+            animator.SetBool("isMoving", false);
+            agent.isStopped = true;
+        }
+        else if (playerInSightRange && !playerInAttackRange)
+        {
+            ChasePlayer();
+            animator.SetBool("isMoving", true);
+            agent.isStopped = false;
+        }
+        else if (playerInSightRange && playerInAttackRange && !animator.GetBool("isHit")) AttackPlayer();
+        if (animator.GetBool("isHit") && gameObject.tag != "Boss")
+            ResetAttack();
+        
     }
 
     protected abstract void Idle();
@@ -63,6 +78,9 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void ResetAttack()
     {
         readyToAttack = true;
+        animator.SetBool("isAttacking", false);
+        if (animator.GetBool("isHit"))
+            stats.resetHit();
     }
 
     private void OnDrawGizmosSelected()

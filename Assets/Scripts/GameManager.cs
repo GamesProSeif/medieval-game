@@ -164,6 +164,7 @@ public class GameManager : MonoBehaviour
     public void DisableCurser()
     {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void EnableCurser()

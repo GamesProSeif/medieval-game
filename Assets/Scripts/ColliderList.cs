@@ -14,6 +14,7 @@ public class ColliderList : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         addCollision(other.gameObject);
+        
     }
 
     private void OnTriggerExit(Collider other)

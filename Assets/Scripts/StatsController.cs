@@ -22,32 +22,33 @@ public class StatsController : MonoBehaviour
         if (health == 0)
             KillEntity(null);
         if (gameObject.tag == "Player") animator = GameObject.Find("PlayerBody").gameObject.GetComponent<Animator>();
-        else if (gameObject.tag == "Boss") animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
-        else if (gameObject.tag == "RangedEnemy") animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
-        else if (gameObject.tag == "Melee") animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
-        else animator = GetComponent<Animator>();
+        else
+        {
+            animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
+            updateHealth(level);
+        }
         levelingSystem = GameObject.Find("Player").GetComponent<LevelingSystem>();
+        
     }
     
 
     public void TakeDamage(int damage, GameObject damagedBy)
     {
         if (killed) return;
-        if(gameObject.tag == "Player")
-            animator.SetBool("isHit", true);
+        animator.SetBool("isHit", true);
         health -= damage;
         Invoke(nameof(resetHit), 1);
         if (health <= 0)
             KillEntity(damagedBy);
         else if (gameObject.tag == "Player")
             FindObjectOfType<AudioManager>().Play("PlayerHurt");
-        else if (gameObject.tag == "Enemy")
+        else if (gameObject.tag == "Enemy" || gameObject.tag == "Boss" || gameObject.tag == "RangedEnemy" || gameObject.tag == "Melee")
             FindObjectOfType<AudioManager>().Play("EnemyHurt");
     }
     
-    private void resetHit()
+    public void resetHit()
     {
-       if(gameObject.tag == "Player") animator.SetBool("isHit", false);
+       animator.SetBool("isHit", false);
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -79,6 +80,42 @@ public class StatsController : MonoBehaviour
             if (killedBy.name == "Player")
                 levelingSystem.GainExperienceScalable(xp, level);
         }
+    }
+
+    private void updateHealth(int level)
+    {
+        if (gameObject.tag == "Enemy")
+        {
+            setHealth(0.01f, 0.258f, level);
+        }
+       else if (gameObject.tag == "RangedEnemy")
+        {
+            setHealth(0.01f, 0.24f, level);
+        }
+       else if (gameObject.tag == "Boss")
+        {
+            setHealth(0.01f, 0.473f, level);
+        }
+       else if (gameObject.tag == "Melee")
+        {
+            setHealth(0.01f, 0.44f, level);
+        }
+    }
+
+    private void setHealth(float x, float y, int level)
+    {
+        if (level == 1)
+        {
+            maxHealth = 100;
+            health = maxHealth;
+            return;
+        }
+        for (int i = 2; i <= level; i++)
+        {
+            int ratio = Mathf.RoundToInt((100 * x) * (100 - i) * y);
+            maxHealth += ratio;
+        }
+        health = maxHealth;
     }
 
     public void destroy()

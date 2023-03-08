@@ -13,19 +13,22 @@ public class RangedEnemy : EnemyBase
 
     protected override void Idle()
     {
+  
         transform.LookAt(playerTransform);
+
     }
 
     protected override void ChasePlayer()
     {
-        Animator animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
+        
         agent.SetDestination(playerTransform.position);
-        animator.SetFloat("Speedf", agent.speed);
+
+
     }
 
     protected override void AttackPlayer()
     {
-        Animator animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
+       // Animator animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
 
         // Fixed position
         agent.SetDestination(transform.position);
@@ -54,8 +57,6 @@ public class RangedEnemy : EnemyBase
     protected override void ResetAttack()
     {
         base.ResetAttack();
-
-        Animator animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
         animator.SetBool("isAttacking", false);
     }
 }

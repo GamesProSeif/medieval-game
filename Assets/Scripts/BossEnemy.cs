@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BossEnemy : EnemyBase
-{
-    Animator animator;
+{ 
     [Header("Ranged Settings")]
     public int attackCooldown;
     public int damage;
@@ -19,10 +18,8 @@ public class BossEnemy : EnemyBase
 
     protected override void ChasePlayer()
     {
-        Animator animator = gameObject.transform.GetChild(0).GetComponent<Animator>();
 
         agent.SetDestination(playerTransform.position);
-        animator.SetFloat("Speedf", agent.speed);
     }
 
     protected override void AttackPlayer()

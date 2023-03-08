@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class LevelingSystem : MonoBehaviour
 {
     public int level;
-    public int maxLevel = 10;
+    private int maxLevel = 10;
     public float currentxp;
     public float requiredxp;
     private float lerptimer;
@@ -129,7 +129,7 @@ public class LevelingSystem : MonoBehaviour
         GetComponent<PlayerHealth>().IncreaseHealth(level);
         requiredxp = CalculateRequiredXp();
         lvl.text = "level " + level;
-        stats.strength += (float)0.15 * level;
+        stats.strength += 0.15f * level;
     }
     private int CalculateRequiredXp()
     {
