@@ -363,7 +363,7 @@ MonoBehaviour:
   attackRange: 2
   playerInSightRange: 0
   playerInAttackRange: 0
-  damage: 10
+  damage: 65
   attackCooldown: 2
 --- !u!4 &21035395
 Transform:
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 200
-  maxHealth: 200
+  maxHealth: 100
   level: 3
   xp: 100
   strength: 1.35
@@ -411,7 +411,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1249,7 +1249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: xp
-      value: 150
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: level
@@ -1265,7 +1265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: maxHealth
-      value: 130
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
@@ -2125,11 +2125,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7236707866186222553, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: damage
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: xp
-      value: 120
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: level
@@ -2145,7 +2145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: maxHealth
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
@@ -2776,7 +2776,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: xp
-      value: 160
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: level
@@ -2785,6 +2785,10 @@ PrefabInstance:
     - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: strength
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8780990949293214243, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: m_RootOrder
@@ -2833,6 +2837,14 @@ PrefabInstance:
     - target: {fileID: 8780990949293214252, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: m_Name
       value: Ranged Enemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780990949293214252, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
+      propertyPath: m_TagString
+      value: RangedEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780990949293214255, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
+      propertyPath: damage
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
@@ -7445,7 +7457,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -7837,9 +7849,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7236707866186222553, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: damage
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: xp
-      value: 50
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: level
@@ -7855,7 +7871,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: maxHealth
-      value: 130
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
@@ -8095,6 +8111,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7236707866186222553, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: xp
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: level
       value: 1
@@ -8102,6 +8126,10 @@ PrefabInstance:
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
@@ -9499,7 +9527,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -10006,7 +10034,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: xp
-      value: 150
+      value: 99
       objectReference: {fileID: 0}
     - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: level
@@ -10015,6 +10043,10 @@ PrefabInstance:
     - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: strength
       value: 1.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8780990949293214243, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: m_RootOrder
@@ -10071,6 +10103,14 @@ PrefabInstance:
     - target: {fileID: 8780990949293214252, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: m_Name
       value: Ranged Enemy (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780990949293214252, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
+      propertyPath: m_TagString
+      value: RangedEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780990949293214255, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
+      propertyPath: damage
+      value: 55
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
@@ -10147,11 +10187,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7236707866186222553, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: damage
-      value: 35
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: xp
-      value: 120
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: level
@@ -10167,7 +10207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: maxHealth
-      value: 180
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
@@ -10674,8 +10714,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 400
-  maxHealth: 400
-  level: 7
+  maxHealth: 100
+  level: 10
   xp: 400
   strength: 3.5
   killed: 0
@@ -10707,7 +10747,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -12071,15 +12111,10 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &677103653 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
-  m_PrefabInstance: {fileID: 2135986488}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &685518411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12702,11 +12737,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7236707866186222553, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: damage
-      value: 35
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: xp
-      value: 120
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: level
@@ -12722,7 +12757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: maxHealth
-      value: 180
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
@@ -13829,7 +13864,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -14818,7 +14853,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -15594,7 +15629,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -16725,6 +16760,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7236707866186222553, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: damage
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: xp
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: level
       value: 2
@@ -16732,6 +16775,10 @@ PrefabInstance:
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: strength
       value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
@@ -16882,11 +16929,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7236707866186222553, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: damage
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: xp
-      value: 120
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: level
@@ -16902,7 +16949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: maxHealth
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
@@ -18592,7 +18639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: xp
-      value: 110
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: level
@@ -18608,7 +18655,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: maxHealth
-      value: 150
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8780990949293214243, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: m_RootOrder
@@ -18665,6 +18712,14 @@ PrefabInstance:
     - target: {fileID: 8780990949293214252, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: m_Name
       value: Ranged Enemy (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780990949293214252, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
+      propertyPath: m_TagString
+      value: RangedEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780990949293214255, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
+      propertyPath: damage
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 9189684129924442937, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -19245,7 +19300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7236707866186222553, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: damage
-      value: 40
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: xp
@@ -19265,7 +19320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: maxHealth
-      value: 170
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
@@ -19282,22 +19337,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3434850242673270655, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
   m_PrefabInstance: {fileID: 2135986488}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &1126379357
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677103653}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1131329243
 GameObject:
   m_ObjectHideFlags: 0
@@ -22062,7 +22101,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -22990,8 +23029,8 @@ Transform:
   - {fileID: 1886988342}
   - {fileID: 59965899}
   - {fileID: 1973263620}
-  - {fileID: 7889835152622780819}
   - {fileID: 7234044976273889676}
+  - {fileID: 7889835152622780819}
   - {fileID: 21035395}
   - {fileID: 1900796938}
   - {fileID: 1126379352}
@@ -23085,9 +23124,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7236707866186222553, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: damage
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: xp
-      value: 50
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: level
@@ -23103,7 +23146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: maxHealth
-      value: 130
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
@@ -24294,6 +24337,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7236707866186222553, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: xp
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: level
       value: 1
@@ -24301,6 +24352,10 @@ PrefabInstance:
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
@@ -24986,7 +25041,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -25227,27 +25282,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 636c6cfd2200f49479ae308506d9c773, type: 3}
---- !u!1 &1539817919 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8780990949293214252, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
-  m_PrefabInstance: {fileID: 2146593808}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &1539817924
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1539817919}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1542999382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25322,7 +25356,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -25684,7 +25718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7236707866186222553, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: damage
-      value: 40
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: xp
@@ -25704,7 +25738,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: maxHealth
-      value: 170
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
@@ -26146,7 +26180,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -26429,7 +26463,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: xp
-      value: 150
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: level
@@ -26445,7 +26479,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: maxHealth
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
@@ -27318,6 +27352,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7236707866186222553, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: xp
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: level
       value: 1
@@ -27325,6 +27367,10 @@ PrefabInstance:
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
@@ -27471,7 +27517,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -27694,7 +27740,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -28022,7 +28068,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -28148,12 +28194,15 @@ MonoBehaviour:
   healthPotionSettings:
     buffMultiplier: 50
     buffTime: 0
+    isUsed: 0
   speedPotionSettings:
     buffMultiplier: 2
     buffTime: 3
+    isUsed: 0
   strengthPotionSettings:
     buffMultiplier: 1.5
     buffTime: 5
+    isUsed: 0
 --- !u!114 &1753591661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28166,9 +28215,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e34159fafdfe4f40bfb9d942ef0a327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000
-  maxHealth: 1000
-  level: 5
+  health: 100
+  maxHealth: 100
+  level: 1
   xp: 0
   strength: 1
   killed: 0
@@ -28802,6 +28851,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7236707866186222553, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: damage
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: xp
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: level
       value: 2
@@ -28809,6 +28866,10 @@ PrefabInstance:
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: strength
       value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
@@ -29514,7 +29575,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -29540,7 +29601,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -29690,7 +29751,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -29879,6 +29940,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7236707866186222553, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: damage
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: xp
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: level
       value: 2
@@ -29886,6 +29955,10 @@ PrefabInstance:
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: strength
       value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
@@ -29933,7 +30006,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -30778,7 +30851,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -31505,7 +31578,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -31682,7 +31755,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -31700,7 +31773,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: xp
-      value: 110
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: level
@@ -31716,7 +31789,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: maxHealth
-      value: 150
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8780990949293214243, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: m_RootOrder
@@ -31773,6 +31846,14 @@ PrefabInstance:
     - target: {fileID: 8780990949293214252, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: m_Name
       value: Ranged Enemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780990949293214252, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
+      propertyPath: m_TagString
+      value: RangedEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780990949293214255, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
+      propertyPath: damage
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
@@ -34218,7 +34299,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -34469,6 +34550,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7236707866186222553, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: xp
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: level
       value: 1
@@ -34476,6 +34565,10 @@ PrefabInstance:
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
@@ -34693,7 +34786,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: xp
-      value: 110
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: level
@@ -34709,7 +34802,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: maxHealth
-      value: 150
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8780990949293214243, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: m_RootOrder
@@ -34766,6 +34859,14 @@ PrefabInstance:
     - target: {fileID: 8780990949293214252, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: m_Name
       value: Ranged Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780990949293214252, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
+      propertyPath: m_TagString
+      value: RangedEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780990949293214255, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
+      propertyPath: damage
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
@@ -60376,6 +60477,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7236707866186222553, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: xp
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: level
       value: 1
@@ -60383,6 +60492,10 @@ PrefabInstance:
     - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: strength
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8254746799952375933, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8381648966166451813, guid: 943ff24c17bf71d4ea2f12c34e7ad355, type: 3}
       propertyPath: m_Name
@@ -69938,6 +70051,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1408085138}
     m_Modifications:
     - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
+      propertyPath: xp
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: level
       value: 2
       objectReference: {fileID: 0}
@@ -69945,9 +70062,13 @@ PrefabInstance:
       propertyPath: strength
       value: 1.1
       objectReference: {fileID: 0}
+    - target: {fileID: 8780990949293214241, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 8780990949293214243, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8780990949293214243, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
       propertyPath: m_LocalPosition.x
@@ -69993,6 +70114,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ranged Enemy (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 8780990949293214252, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
+      propertyPath: m_TagString
+      value: RangedEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780990949293214255, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
+      propertyPath: damage
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 345cf9f4b4153dc4baf08e6a791170df, type: 3}
 --- !u!4 &7234044976273889676 stripped
@@ -70012,7 +70141,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -74206,7 +74335,7 @@ MonoBehaviour:
   attackRange: 2
   playerInSightRange: 0
   playerInAttackRange: 0
-  damage: 10
+  damage: 90
   attackCooldown: 2
 --- !u!4 &7889835152622780819
 Transform:
@@ -74222,7 +74351,7 @@ Transform:
   m_Children:
   - {fileID: 7707042396711904124}
   m_Father: {fileID: 1408085138}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 106.119, z: 0}
 --- !u!114 &7889835152622780820
 MonoBehaviour:
@@ -74237,9 +74366,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 250
-  maxHealth: 250
+  maxHealth: 100
   level: 5
-  xp: 250
+  xp: 180
   strength: 3
   killed: 0
 --- !u!54 &7889835152622780821
@@ -74254,7 +74383,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

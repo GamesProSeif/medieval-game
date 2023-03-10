@@ -1205,6 +1205,7 @@ GameObject:
   - component: {fileID: 8780990949293214241}
   - component: {fileID: 8780990949293214254}
   - component: {fileID: 8780990949293214255}
+  - component: {fileID: 6296085228537824622}
   m_Layer: 0
   m_Name: RangedEnemy (2)
   m_TagString: Enemy
@@ -1308,6 +1309,22 @@ MonoBehaviour:
   damage: 20
   force: 20
   objectToThrow: {fileID: 4865309214770636011, guid: 45804eb2722b83845adbcf2d72da12dd, type: 3}
+--- !u!54 &6296085228537824622
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8780990949293214252}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8843994860123157935
 GameObject:
   m_ObjectHideFlags: 0

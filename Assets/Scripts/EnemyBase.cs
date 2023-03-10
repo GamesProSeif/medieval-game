@@ -63,7 +63,7 @@ public abstract class EnemyBase : MonoBehaviour
             animator.SetBool("isMoving", true);
             agent.isStopped = false;
         }
-        else if (playerInSightRange && playerInAttackRange && !animator.GetBool("isHit")) AttackPlayer();
+        else if (playerInSightRange && playerInAttackRange && (!animator.GetBool("isHit") || gameObject.tag == "Boss") ) AttackPlayer();
         if (animator.GetBool("isHit") && gameObject.tag != "Boss")
             ResetAttack();
         

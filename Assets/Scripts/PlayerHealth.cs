@@ -86,8 +86,8 @@ public class PlayerHealth : MonoBehaviour
     public void IncreaseHealth(int level)
     {
         level = GetComponent<LevelingSystem>().level;
-        int ratio = Mathf.RoundToInt((stats.health *0.01f) * (100 - level) * 0.327f);
-        stats.maxHealth += Mathf.RoundToInt((stats.health *0.01f) * (100 - level) * 0.327f);
+        int ratio = Mathf.RoundToInt((stats.maxHealth *0.01f) * (100 - level) * 0.327f);
+        stats.maxHealth += Mathf.RoundToInt((stats.maxHealth *0.01f) * (100 - level) * 0.327f);
         stats.health = stats.maxHealth;
         backGround.rectTransform.sizeDelta = new Vector2(backGround.rectTransform.sizeDelta.x + ratio, backGround.rectTransform.sizeDelta.y);
         backGround.rectTransform.transform.position = new Vector2(backGround.rectTransform.transform.position.x + ratio/2, backGround.rectTransform.position.y);

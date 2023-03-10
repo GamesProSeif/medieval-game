@@ -75,6 +75,7 @@ public class CombatController : MonoBehaviour
 
         public float buffMultiplier;
         public float buffTime;
+        public bool isUsed;
 
     }
 
@@ -272,16 +273,22 @@ public class CombatController : MonoBehaviour
 
         if(potion == PotionType.Speed)
         {
+            if (speedPotionSettings.isUsed)
+                return;
             item = itemController.findByName("SpeedPotion");
             if (item == null || item.count <= 0) return;
-            increaseSpeed();   
+            increaseSpeed();
+            speedPotionSettings.isUsed = true;
         }
    
         if (potion == PotionType.Strength)
         {
+            if (strengthPotionSettings.isUsed)
+                return;
             item = itemController.findByName("StrengthPotion");
             if (item == null || item.count <= 0) return;
             increaseStrength();
+            strengthPotionSettings.isUsed = true;
         }
         itemController.decrementCount(item);
     }
@@ -300,6 +307,7 @@ public class CombatController : MonoBehaviour
     {
         movementController.Speed /= speedPotionSettings.buffMultiplier;
         usedSpeedPotion = false;
+        speedPotionSettings.isUsed = false;
     }    
     
     private void increaseStrength()
@@ -315,6 +323,7 @@ public class CombatController : MonoBehaviour
     {
         playerStats.strength /= strengthPotionSettings.buffMultiplier;
         usedStrengthPotion = false;
+        strengthPotionSettings.isUsed = false;
     }
 
     private void OnDrawGizmosSelected()
