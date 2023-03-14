@@ -88,7 +88,7 @@ public class CombatController : MonoBehaviour
     public PotionSettings strengthPotionSettings;
 
 
-    private void Start()
+    private void Awake()
     {
         playerStats = GetComponent<StatsController>();
         itemController = GetComponent<ItemController>();
@@ -96,6 +96,7 @@ public class CombatController : MonoBehaviour
         movementController = GetComponent<MovementController>();
         animator = GameObject.Find("PlayerBody").gameObject.GetComponent<Animator>();
         currentWeapon = Weapon.None;
+        animator.SetBool("currentWeaponNone", true);
     }
     private void Update()
     {
@@ -127,6 +128,7 @@ public class CombatController : MonoBehaviour
                 animator.SetBool("isSwordEquiped", true);
                 ResetActivePrefabs(Weapon.Sword);
                 animator.SetBool("currentWeaponSword", true);
+                animator.SetBool("currentWeaponNone", false);
                 FindObjectOfType<AudioManager>().Play("SwordDraw");
                 swordPrefab.SetActive(true);
                 break;
@@ -136,6 +138,7 @@ public class CombatController : MonoBehaviour
                 animator.SetBool("isSwordEquiped", false);
                 animator.SetBool("isBowEquiped", true);
                 animator.SetBool("currentWeaponBow", true);
+                animator.SetBool("currentWeaponNone", false);
                 ResetActivePrefabs(Weapon.Bow);
                 bowPrefab.SetActive(true);
                 break;
@@ -144,6 +147,11 @@ public class CombatController : MonoBehaviour
                     || itemController.findByName("FireGrenade").count == 0
                     || currentWeapon == Weapon.FireGrenade)
                     return;
+                animator.SetBool("isSwordEquiped", false);
+                animator.SetBool("isBowEquiped", false);
+                animator.SetBool("currentWeaponBow", false);
+                animator.SetBool("currentWeaponNone", false);
+                animator.SetBool("currentWeaponGrenade", true);
                 ResetActivePrefabs(Weapon.FireGrenade);
                 break;
         }
@@ -206,7 +214,14 @@ public class CombatController : MonoBehaviour
                 objectToThrow = fireGrenadePrefab;
                 
             }
-            if (item == null || item.count <= 0) return;
+            if (item == null || item.count <= 0)
+            {
+                currentWeapon = Weapon.None;
+                animator.SetBool("currentWeaponNone", true);
+                animator.SetBool("isAttacking", false);
+                return;
+            }
+
             {
                 itemController.decrementCount(item);
                 animator.SetBool("isAttacking", false);

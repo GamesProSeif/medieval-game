@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public Animator deathTip;
     public TextMeshProUGUI _Death;
     public TextMeshProUGUI DeathTextTip;
+    public TextMeshProUGUI healthpotions;
     //@TODO: implement settings for global variables (ie: healthPotionMultiplier)
 
     private void Start()
@@ -85,7 +86,8 @@ public class GameManager : MonoBehaviour
         playerHealth.RestoreHealth(statsController.maxHealth);
         InventoryItem healthPotion = itemController.findByName("HealthPotion");
         if (healthPotion == null) healthPotion = new InventoryItem("HealthPotion", 5, null, true);
-        healthPotion.count = 5;
+        healthPotion.count += 5;
+        healthpotions.text = ""+healthPotion.count;
         Invoke(nameof(ResetWellRestore), wellRestoreCooldown);
     }
 
