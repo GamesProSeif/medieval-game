@@ -8,6 +8,7 @@ public class SelectionManger : MonoBehaviour
 
     [SerializeField] private Material highlightedMaterial;
     [SerializeField] private float rayRange;
+    [SerializeField] private float radius;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private Transform raySource;
 
@@ -31,7 +32,7 @@ public class SelectionManger : MonoBehaviour
 
         RaycastHit hit;
         
-        if (Physics.Raycast(raySource.position, raySource.TransformDirection(Vector3.forward), out hit, rayRange, layerMask))
+        if (Physics.SphereCast(raySource.position, radius, raySource.TransformDirection(Vector3.forward), out hit, rayRange, layerMask))
         {
            
             Debug.DrawRay(raySource.position, raySource.TransformDirection(Vector3.forward)* hit.distance, Color.green );

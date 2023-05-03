@@ -21,6 +21,12 @@ public class ItemController : MonoBehaviour
     public TextMeshProUGUI strengthPotionCount;
     public TextMeshProUGUI pickup;
     public SelectionManger selection;
+    private ItemController itemCtrl;
+
+    private void Awake()
+    {
+        itemCtrl = GameObject.Find("Player").GetComponent<ItemController>();
+    }
 
     private void Update()
     {
@@ -36,7 +42,10 @@ public class ItemController : MonoBehaviour
                     if (temp.stackable)
                     {
                         if (x != null)
+                        {
                             x.count += temp.count;
+                            updateUI();
+                        }
                         else addToList(temp);
                     }
                     else
@@ -61,22 +70,46 @@ public class ItemController : MonoBehaviour
         bowImage.gameObject.SetActive(findByName("Bow") != null);
         arrowAmmoText.gameObject.SetActive(findByName("Bow") != null && findByName("Arrow") != null);
         arrowAmmoText.text = findByName("Arrow") != null ? findByName("Arrow").count.ToString() : "0";
+        if (itemCtrl.findByName("Arrow") != null)
+        {
+            InventoryItem Arrow = itemCtrl.findByName("Arrow");
+            arrowAmmoText.text = "" + Arrow.count;
+            Debug.Log(Arrow.count);
+
+        }
 
         fireGrenadeImage.gameObject.SetActive(findByName("FireGrenade") != null);
         fireGrenadeAmmoText.gameObject.SetActive(findByName("FireGrenade") != null);
         fireGrenadeAmmoText.text = findByName("FireGrenade") != null ? findByName("FireGrenade").count.ToString() : "0";
-
+        if (itemCtrl.findByName("FireGrenade") != null)
+        {
+            InventoryItem Grenades = itemCtrl.findByName("FireGrenade");
+            fireGrenadeAmmoText.text = "" + Grenades.count;
+        }
         healthPotionImage.gameObject.SetActive(findByName("HealthPotion") != null);
         healthPotionCount.gameObject.SetActive(findByName("HealthPotion") != null);
         healthPotionCount.text = findByName("HealthPotion") != null ? findByName("HealthPotion").count.ToString() : "0";
-
+        if (itemCtrl.findByName("HealthPotion") != null)
+        {
+            InventoryItem healthPotion = itemCtrl.findByName("HealthPotion");
+            healthPotionCount.text = "" + healthPotion.count;
+        }
         speedPotionImage.gameObject.SetActive(findByName("SpeedPotion") != null);
         speedPotionCount.gameObject.SetActive(findByName("SpeedPotion") != null);
         speedPotionCount.text = findByName("SpeedPotion") != null ? findByName("SpeedPotion").count.ToString() : "0";
-
+        if (itemCtrl.findByName("SpeedPotion") != null)
+        {
+            InventoryItem speedPotion = itemCtrl.findByName("HealthPotion");
+            speedPotionCount.text = "" + speedPotion.count;
+        }
         strengthPotionImage.gameObject.SetActive(findByName("StrengthPotion") != null);
         strengthPotionCount.gameObject.SetActive(findByName("StrengthPotion") != null);
         strengthPotionCount.text = findByName("StrengthPotion") != null ? findByName("StrengthPotion").count.ToString() : "0";
+        if (itemCtrl.findByName("StrengthPotion") != null)
+        {
+            InventoryItem strengthPotion = itemCtrl.findByName("HealthPotion");
+            strengthPotionCount.text = "" + strengthPotion.count;
+        }
     }
 
     void hideUI()
@@ -111,6 +144,7 @@ public class ItemController : MonoBehaviour
         temp1.stackable = item.stackable;
         temp1.prefab = item.prefab;
         addToList(temp1);
+        updateUI();
     }
 
     public void addToList(InventoryItem item)

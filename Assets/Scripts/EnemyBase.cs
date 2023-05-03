@@ -14,6 +14,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected StatsController playerStatsController;
     protected Transform playerTransform;
+    private BossHealth bossHealth;
 
     public LayerMask whatIsPlayer, whatIsGround;
 
@@ -63,7 +64,7 @@ public abstract class EnemyBase : MonoBehaviour
             animator.SetBool("isMoving", true);
             agent.isStopped = false;
         }
-        else if (playerInSightRange && playerInAttackRange && (!animator.GetBool("isHit") || gameObject.tag == "Boss") ) AttackPlayer();
+        else if (playerInSightRange && playerInAttackRange && (!animator.GetBool("isHit") || gameObject.tag == "Boss")) { AttackPlayer(); if (gameObject.tag == "Boss") bossHealth.bossHealth.SetActive(true);}
         if (animator.GetBool("isHit") && gameObject.tag != "Boss")
             ResetAttack();
         

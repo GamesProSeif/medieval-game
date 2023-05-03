@@ -28,10 +28,14 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI _Death;
     public TextMeshProUGUI DeathTextTip;
     public TextMeshProUGUI healthpotions;
+    public GameObject boss;
+    public GameObject Enemies;
     //@TODO: implement settings for global variables (ie: healthPotionMultiplier)
 
     private void Start()
     {
+        Time.timeScale = 1f;
+        GameIsPaused = false;
         GameObject player = GameObject.Find("Player");
         itemController = player.GetComponent<ItemController>();
         combatController = player.GetComponent<CombatController>();
@@ -41,6 +45,8 @@ public class GameManager : MonoBehaviour
         blackScreen.SetActive(true);
         animScreen.SetBool("fadeIn", true);
         animScreen.SetBool("fadeOut", false);
+        boss = GameObject.FindGameObjectWithTag("Boss");
+        Enemies = GameObject.Find("Enemies");
 
         AddInventoryItems();
     }
@@ -76,6 +82,12 @@ public class GameManager : MonoBehaviour
             }
             else PauseGame();
         }
+        if(!boss)
+        {
+            
+            GameVictory();
+
+        }
     }
 
     // Well Restore implementation
@@ -103,7 +115,7 @@ public class GameManager : MonoBehaviour
         InventoryItem[] items =
         {
             new InventoryItem("Scitmar", 1, null, false),
-            new InventoryItem("Arrow", 50, combatController.arrowPrefab, true),
+            //new InventoryItem("Arrow", 50, combatController.arrowPrefab, true),
             new InventoryItem("FireGrenade", 10, combatController.fireGrenadePrefab, true),
             new InventoryItem("HealthPotion", 10, null, true),
             new InventoryItem("SpeedPotion", 5, null, true),
@@ -153,7 +165,9 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        pauseMenu.SetActive(true);
+        if(boss)
+            pauseMenu.SetActive(true);
+        else gameOverText.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
         EnableCurser();
@@ -192,5 +206,13 @@ public class GameManager : MonoBehaviour
         statsController.killed = false;
     }
 
+    public void GameVictory()
+    {
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+        gameOverText.SetActive(true);
+        EnableCurser();
+        
+    }
 
 }
