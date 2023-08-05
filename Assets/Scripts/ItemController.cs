@@ -99,7 +99,7 @@ public class ItemController : MonoBehaviour
         speedPotionCount.text = findByName("SpeedPotion") != null ? findByName("SpeedPotion").count.ToString() : "0";
         if (itemCtrl.findByName("SpeedPotion") != null)
         {
-            InventoryItem speedPotion = itemCtrl.findByName("HealthPotion");
+            InventoryItem speedPotion = itemCtrl.findByName("SpeedPotion");
             speedPotionCount.text = "" + speedPotion.count;
         }
         strengthPotionImage.gameObject.SetActive(findByName("StrengthPotion") != null);
@@ -107,7 +107,7 @@ public class ItemController : MonoBehaviour
         strengthPotionCount.text = findByName("StrengthPotion") != null ? findByName("StrengthPotion").count.ToString() : "0";
         if (itemCtrl.findByName("StrengthPotion") != null)
         {
-            InventoryItem strengthPotion = itemCtrl.findByName("HealthPotion");
+            InventoryItem strengthPotion = itemCtrl.findByName("StrengthPotion");
             strengthPotionCount.text = "" + strengthPotion.count;
         }
     }

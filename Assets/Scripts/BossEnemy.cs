@@ -10,20 +10,28 @@ public class BossEnemy : EnemyBase
     public int damage;
     public float force;
     public GameObject objectToThrow;
+    private GameObject health;
 
+    protected void Start()
+    {
+        health = GameObject.Find("BossHealth");
+    }
     protected override void Idle()
     {
         transform.LookAt(playerTransform);
+        health.gameObject.SetActive(false);
     }
 
     protected override void ChasePlayer()
     {
 
         agent.SetDestination(playerTransform.position);
+        health.gameObject.SetActive(true);
     }
 
     protected override void AttackPlayer()
     {
+        health.gameObject.SetActive(true);
         // Fixed position
         agent.SetDestination(transform.position);
         transform.LookAt(playerTransform);

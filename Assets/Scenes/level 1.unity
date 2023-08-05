@@ -2302,7 +2302,7 @@ RectTransform:
   m_GameObject: {fileID: 107737150}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.5603604, y: 1, z: 1}
+  m_LocalScale: {x: 3.2561834, y: 1.3565, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 689868761}
@@ -2310,7 +2310,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -776.0857, y: -456.67447}
+  m_AnchoredPosition: {x: -776.0303, y: -456.3}
   m_SizeDelta: {x: 105.8618, y: 72.2806}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &107737152
@@ -9895,7 +9895,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &503667819
 Transform:
   m_ObjectHideFlags: 0
@@ -10372,8 +10372,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4279045559
+  m_fontColor: {r: 0.7169812, g: 0.050729793, b: 0.050729793, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -13390,7 +13390,7 @@ RectTransform:
   m_GameObject: {fileID: 741363033}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.12960325, z: 1}
+  m_LocalScale: {x: 1.2717676, y: 0.17580682, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 689868761}
@@ -13398,7 +13398,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -642.6, y: -457.72998}
+  m_AnchoredPosition: {x: -606.2705, y: -457.73}
   m_SizeDelta: {x: 9, y: 573.93}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &741363035
@@ -14626,7 +14626,7 @@ RectTransform:
   m_GameObject: {fileID: 839544283}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.12960325, z: 1}
+  m_LocalScale: {x: 1.2717676, y: 0.17580682, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 689868761}
@@ -14634,7 +14634,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -910, y: -456}
+  m_AnchoredPosition: {x: -946.32947, y: -455.38}
   m_SizeDelta: {x: 9, y: 547.32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &839544285
@@ -20488,7 +20488,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7d053d3b3746a204bb3be41bbecff78f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f11de43791439dc4eb7c6babf7b4a30c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -24131,7 +24131,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -32.2, y: 19.2}
+  m_AnchoredPosition: {x: -45.9, y: 19.2}
   m_SizeDelta: {x: 22.6334, y: 22.6334}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1450318350
@@ -24389,7 +24389,7 @@ RectTransform:
   m_GameObject: {fileID: 1472817203}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.164, y: 1.2933, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1450318349}
@@ -24398,7 +24398,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -846.6, y: -454.89}
+  m_AnchoredPosition: {x: -866.14984, y: -454.89}
   m_SizeDelta: {x: 71.7403, y: 71.7436}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1472817205
@@ -31520,6 +31520,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1978823072884699543, guid: e948741d13dd3764f8d1763ba9c61771, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1978823072884699560, guid: e948741d13dd3764f8d1763ba9c61771, type: 3}
+      propertyPath: masterVolume
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1978823072884699561, guid: e948741d13dd3764f8d1763ba9c61771, type: 3}

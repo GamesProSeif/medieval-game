@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,12 +10,12 @@ public abstract class EnemyBase : MonoBehaviour
     protected StatsController stats;
     protected Rigidbody rb;
     protected Animator animator;
+    protected Animation anim;
     protected float speed, groundDrag;
     protected bool readyToAttack;
 
     protected StatsController playerStatsController;
     protected Transform playerTransform;
-    private BossHealth bossHealth;
 
     public LayerMask whatIsPlayer, whatIsGround;
 
@@ -64,10 +65,12 @@ public abstract class EnemyBase : MonoBehaviour
             animator.SetBool("isMoving", true);
             agent.isStopped = false;
         }
-        else if (playerInSightRange && playerInAttackRange && (!animator.GetBool("isHit") || gameObject.tag == "Boss")) { AttackPlayer(); if (gameObject.tag == "Boss") bossHealth.bossHealth.SetActive(true);}
+        else if (playerInSightRange && playerInAttackRange && (!animator.GetBool("isHit") || gameObject.tag == "Boss")) AttackPlayer();
         if (animator.GetBool("isHit") && gameObject.tag != "Boss")
+        {
             ResetAttack();
-        
+            Debug.Log("I work dumbass!");
+        }
     }
 
     protected abstract void Idle();
