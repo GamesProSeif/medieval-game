@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,6 +35,9 @@ public class GameManager : MonoBehaviour
     public GameObject boss;
     public GameObject Enemies;
     private GameObject canvas;
+    private Button resumeButton;
+    private Button mainMenuButton;
+    private Button restartButton;
     //@TODO: implement settings for global variables (ie: healthPotionMultiplier)
     private void Awake()
     {
@@ -47,6 +51,9 @@ public class GameManager : MonoBehaviour
         _Death = canvas.transform.Find("Death").gameObject.GetComponent<TextMeshProUGUI>();
         DeathTextTip = canvas.transform.Find("DeathTextTip").gameObject.GetComponent<TextMeshProUGUI>();
         healthpotions = canvas.transform.Find("HealthPotionCount").gameObject.GetComponent<TextMeshProUGUI>();
+        resumeButton = pauseMenu.transform.Find("ResumeButton").gameObject.GetComponent<Button>();
+        restartButton = pauseMenu.transform.Find("RestartButton").gameObject.GetComponent<Button>();
+        mainMenuButton = pauseMenu.transform.Find("MainMenuButton").gameObject.GetComponent<Button>();
             
     }
 
@@ -95,8 +102,8 @@ public class GameManager : MonoBehaviour
             {
                 if (elapsed2 <= 1f)
                     elapsed2 += Time.deltaTime;
-                else 
-                { 
+                else
+                {
                     elapsed2 = 0f;
                     combatController.noWeaponText.gameObject.SetActive(false);
                 }
@@ -110,12 +117,12 @@ public class GameManager : MonoBehaviour
                 {
                     elapsed3 = 0f;
                     combatController.noPotionText.gameObject.SetActive(false);
-                }    
+                }
             }
         }
         else
         {
-             StartCoroutine(DeathCouroutine());
+            StartCoroutine(DeathCouroutine());
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -125,12 +132,13 @@ public class GameManager : MonoBehaviour
             }
             else PauseGame();
         }
-        if(!boss)
+        if (!boss)
         {
-            
+
             GameVictory();
 
         }
+        
     }
 
     // Well Restore implementation

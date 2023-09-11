@@ -231,6 +231,67 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &4516637756665528313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3733194003018745830}
+  - component: {fileID: 6340954173314490504}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3733194003018745830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4516637756665528313}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -494.61548, y: -501.2042, z: 308.45215}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5219274240328983426}
+  m_RootOrder: 32
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6340954173314490504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4516637756665528313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc512f67444a9ed4d844ccc17fbfae90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameIsPaused: 0
+  wellRestoreRadius: 5
+  wellRestoreCooldown: 10
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 64
+  gameOverText: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  blackScreen: {fileID: 0}
+  animScreen: {fileID: 0}
+  deathanim: {fileID: 0}
+  deathTip: {fileID: 0}
+  _Death: {fileID: 0}
+  DeathTextTip: {fileID: 0}
+  healthpotions: {fileID: 0}
+  boss: {fileID: 0}
+  Enemies: {fileID: 0}
 --- !u!1 &5219274239143236304
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +522,7 @@ GameObject:
   - component: {fileID: 5219274239312996888}
   - component: {fileID: 5219274239312996889}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: MainMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -570,7 +631,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6340954173314490504}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: BackToMainMenu
         m_Mode: 1
@@ -5195,6 +5256,7 @@ RectTransform:
   - {fileID: 5219274239340871781}
   - {fileID: 5219274239378430944}
   - {fileID: 5219274239716722544}
+  - {fileID: 3733194003018745830}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5503,7 +5565,7 @@ GameObject:
   - component: {fileID: 5219274240508108313}
   - component: {fileID: 5219274240508108314}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ResumeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5612,7 +5674,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6340954173314490504}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ResumeGame
         m_Mode: 1
@@ -7180,7 +7242,7 @@ GameObject:
   - component: {fileID: 5219274241054595272}
   - component: {fileID: 5219274241054595273}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: RestartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7289,7 +7351,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6340954173314490504}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: RestartGame
         m_Mode: 1
