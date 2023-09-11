@@ -18,7 +18,7 @@ public class SelectionManger : MonoBehaviour
     private void Start()
     {
         raySource = Camera.main.transform;
-        layerMask = LayerMask.GetMask("Item");
+        layerMask = LayerMask.GetMask("Item", "Door");
         mainSelection = null;
     }
     void Update()
@@ -41,7 +41,7 @@ public class SelectionManger : MonoBehaviour
             var SelectionRenderer = Selection.GetComponent<Renderer>();
             defaultMat = SelectionRenderer.material;
 
-            if (Selection.CompareTag("Item"))
+            if (Selection.CompareTag("Item") || Selection.CompareTag("Door"))
             {
                
                 {

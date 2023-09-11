@@ -44,6 +44,7 @@ public class MovementController : MonoBehaviour
     {
         MovePlayer();
         StepClimb();
+        animator.SetFloat("Speedf", rb.velocity.magnitude);
     }
     void Update()
     {
@@ -58,7 +59,7 @@ public class MovementController : MonoBehaviour
 
         SpeedControl();
         CheckMoveDirection();
-        animator.SetFloat("Speedf", rb.velocity.magnitude);
+       
     }
 
     void MovePlayer()
@@ -138,6 +139,13 @@ public class MovementController : MonoBehaviour
             animator.SetBool("isMovingRight",false);
             animator.SetBool("isMovingLeft", false);
            
+        }
+        else
+        {
+            animator.SetBool("isMovingBackwards", false);
+            animator.SetBool("isMovingForward", false);
+            animator.SetBool("isMovingRight", false);
+            animator.SetBool("isMovingLeft", false);
         }
        
     }

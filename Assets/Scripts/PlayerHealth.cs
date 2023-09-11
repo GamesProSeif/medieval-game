@@ -17,6 +17,14 @@ public class PlayerHealth : MonoBehaviour
     public TextMeshProUGUI h;
     private StatsController stats;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        frontHealthBar = GameObject.Find("FrontHealthBar").GetComponent<Image>();
+        backHealthBar = GameObject.Find("BackHealthBar").GetComponent<Image>();
+        Frame = GameObject.Find("FrameHealth").GetComponent<Image>();
+        backGround = GameObject.Find("HealthBarBackGround").GetComponent<Image>();
+        h = GameObject.Find("health").GetComponent<TextMeshProUGUI>();
+    }
     void Start()
     {
         stats = GetComponent<StatsController>();

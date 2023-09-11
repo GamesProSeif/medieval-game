@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: deb769335943a41478ab560d1677ce3c
+guid: 9237ec20df36a364ab9e226aed03c515
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -10,8 +10,7 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - Medieval Times
-  fallbackFontReferences:
-  - {fileID: 12800000, guid: 9237ec20df36a364ab9e226aed03c515, type: 3}
+  fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

@@ -3,14 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Runtime.InteropServices;
+using TMPro;
+using Unity.Android.Types;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CombatController : MonoBehaviour
 {
     public enum Weapon { Sword, Bow, FireGrenade, None }
     public Weapon currentWeapon = Weapon.Bow;
     private StatsController playerStats;
-    private bool readyToAttack = true;
+    public bool readyToAttack = true;
     private bool usedHealthPotion;
     private bool usedSpeedPotion;
     private bool usedStrengthPotion;
@@ -36,7 +39,20 @@ public class CombatController : MonoBehaviour
     public GameObject bowPrefab;
     public GameObject fireGrenadePrefab;
     public GameObject fireParticlesPrefab;
+    private GameObject canvas;
     public Transform cam;
+    public GameObject cooldownSpeedPanel;
+    public GameObject cooldownStrengthPanel;
+    private GameManager gameManager;
+
+    [Header("Texts")]
+    public TextMeshProUGUI noWeaponText;
+    public TextMeshProUGUI noPotionText;
+    public TextMeshProUGUI speedPotionCoolDown;
+    public TextMeshProUGUI strengthPotionCoolDown;
+
+
+
     
 
     [Header("General Settings")]
@@ -75,6 +91,7 @@ public class CombatController : MonoBehaviour
 
         public float buffMultiplier;
         public float buffTime;
+        public float cooldown;
         public bool isUsed;
 
     }
@@ -94,9 +111,17 @@ public class CombatController : MonoBehaviour
         itemController = GetComponent<ItemController>();
         playerHealth = GetComponent<PlayerHealth>();
         movementController = GetComponent<MovementController>();
+        canvas = GameObject.Find("Canvas");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         animator = GameObject.Find("PlayerBody").gameObject.GetComponent<Animator>();
         currentWeapon = Weapon.None;
         animator.SetBool("currentWeaponNone", true);
+        noPotionText = canvas.transform.Find("noPotionText").gameObject.GetComponent<TextMeshProUGUI>();
+        noWeaponText = canvas.transform.Find("noWeaponText").gameObject.GetComponent<TextMeshProUGUI>();
+        speedPotionCoolDown = canvas.transform.Find("speedPotionCD").gameObject.GetComponent<TextMeshProUGUI>();
+        strengthPotionCoolDown = canvas.transform.Find("strengthPotionCD").gameObject.GetComponent<TextMeshProUGUI>();
+        cooldownStrengthPanel = canvas.transform.Find("strengthPanel").gameObject;
+        cooldownSpeedPanel = canvas.transform.Find("speedPanel").gameObject;
     }
     private void Update()
     {
@@ -104,7 +129,7 @@ public class CombatController : MonoBehaviour
         if (Input.GetKeyDown(attack))
             Attack();
         if (Input.GetKeyDown(equipSword))
-            EquipWeapon(Weapon.Sword); 
+            EquipWeapon(Weapon.Sword);
         else if (Input.GetKeyDown(equipBow))
             EquipWeapon(Weapon.Bow);
         else if (Input.GetKeyDown(equipFireGrenade))
@@ -115,6 +140,18 @@ public class CombatController : MonoBehaviour
             DrinkPotion(PotionType.Speed);
         else if (Input.GetKeyDown(drinkBuffPotion))
             DrinkPotion(PotionType.Strength);
+        if (speedPotionCoolDown.IsActive())
+        {
+            updateSpeedCD();
+        }
+        else speedPotionSettings.cooldown = speedPotionSettings.buffTime;
+        if (strengthPotionCoolDown.IsActive())
+        { updateStrengthCD(); }
+        else strengthPotionSettings.cooldown = strengthPotionSettings.buffTime;
+
+            
+            
+            
     }
 
     private void EquipWeapon(Weapon weapon)
@@ -167,7 +204,12 @@ public class CombatController : MonoBehaviour
 
     private void Attack()
     {
-        if (currentWeapon == Weapon.None) return;
+        if (currentWeapon == Weapon.None && !gameManager.GameIsPaused)
+        {
+            noWeaponText.gameObject.SetActive(true);
+            return; 
+        }
+           
         if (!readyToAttack) return;
         animator.SetBool("isAttacking", true);
         readyToAttack = false;
@@ -178,20 +220,19 @@ public class CombatController : MonoBehaviour
             weaponSettings = swordSettings;
             BladeWeaponSettings settings = (BladeWeaponSettings)weaponSettings;
 
-            var collisions = Physics.OverlapSphere(transform.position
-            + transform.forward * (swordSettings.range), settings.range);
-
-            bool hit = false;
-            foreach (var collision in collisions)
-            {
-                if (collision.GetComponent<StatsController>() == null || collision.name == "Player")
-                    continue;
-                collision.GetComponent<StatsController>()
-                    .TakeDamage(Convert.ToInt32(settings.damage * playerStats.strength), gameObject);
-                hit = true;
-            }
-            if (hit)
-                FindObjectOfType<AudioManager>().Play("SwordAttack");
+            //var collisions = Physics.OverlapSphere(transform.position
+            //+ transform.forward * (swordSettings.range), settings.range);
+            //bool hit = false;
+            //foreach (var collision in collisions)
+            //{
+            //    if (collision.GetComponent<StatsController>() == null || collision.name == "Player")
+            //        continue;
+            //    collision.GetComponent<StatsController>()
+            //        .TakeDamage(Convert.ToInt32(settings.damage * playerStats.strength), gameObject);
+            //    hit = true;
+            //}
+            //if (hit)
+            //    FindObjectOfType<AudioManager>().Play("SwordAttack");
         }
         else
         {
@@ -270,7 +311,7 @@ public class CombatController : MonoBehaviour
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
     }
 
-    private void ResetAttack()
+    public void ResetAttack()
     {
         readyToAttack = true;
         animator.SetBool("isAttacking", false);
@@ -282,30 +323,53 @@ public class CombatController : MonoBehaviour
         if (potion == PotionType.Health)
         {
             item = itemController.findByName("HealthPotion");
-            if (item == null || item.count <= 0) return;
+            if (item == null || item.count <= 0)
+            {
+                noPotionText.gameObject.SetActive(true);
+                return;
+            }
             playerHealth.RestoreHealth(healthPotionSettings.buffMultiplier);
         }
 
         if(potion == PotionType.Speed)
         {
             if (speedPotionSettings.isUsed)
+            {
                 return;
+            }
+            
             item = itemController.findByName("SpeedPotion");
-            if (item == null || item.count <= 0) return;
+            if (item == null || item.count <= 0)
+            {
+                noPotionText.gameObject.SetActive(true);
+                return;
+            }
             increaseSpeed();
             speedPotionSettings.isUsed = true;
+            speedPotionCoolDown.gameObject.SetActive(true);
+            cooldownSpeedPanel.gameObject.SetActive(true);
         }
    
         if (potion == PotionType.Strength)
         {
             if (strengthPotionSettings.isUsed)
+            {
+          
                 return;
+            }
             item = itemController.findByName("StrengthPotion");
-            if (item == null || item.count <= 0) return;
+            if (item == null || item.count <= 0)
+            {
+                noPotionText.gameObject.SetActive(true);
+                return;
+            }
             increaseStrength();
             strengthPotionSettings.isUsed = true;
+            strengthPotionCoolDown.gameObject.SetActive(true);
+            cooldownStrengthPanel.gameObject.SetActive(true); 
         }
         itemController.decrementCount(item);
+
     }
 
     private void increaseSpeed()
@@ -315,6 +379,7 @@ public class CombatController : MonoBehaviour
         usedSpeedPotion = true;
         Invoke(nameof(RevertSpeed), speedPotionSettings.buffTime);
         
+        
       
     }
     
@@ -323,6 +388,8 @@ public class CombatController : MonoBehaviour
         movementController.Speed /= speedPotionSettings.buffMultiplier;
         usedSpeedPotion = false;
         speedPotionSettings.isUsed = false;
+        speedPotionCoolDown.gameObject.SetActive(false);
+        cooldownSpeedPanel.gameObject.SetActive(false);
     }    
     
     private void increaseStrength()
@@ -339,6 +406,8 @@ public class CombatController : MonoBehaviour
         playerStats.strength /= strengthPotionSettings.buffMultiplier;
         usedStrengthPotion = false;
         strengthPotionSettings.isUsed = false;
+        strengthPotionCoolDown.gameObject.SetActive(false);
+        cooldownStrengthPanel.gameObject.SetActive(false);
     }
 
     private void OnDrawGizmosSelected()
@@ -346,5 +415,24 @@ public class CombatController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position
             + transform.forward * (swordSettings.range), swordSettings.range);
+    }
+
+    private void updateSpeedCD()
+    {
+        if (speedPotionSettings.cooldown > 0)
+        {
+            speedPotionSettings.cooldown -= Time.deltaTime;
+            speedPotionCoolDown.text = "" + Convert.ToInt64(speedPotionSettings.cooldown);
+
+        }
+    }
+    private void updateStrengthCD()
+    {
+        if (strengthPotionSettings.cooldown > 0)
+        {
+            strengthPotionSettings.cooldown -= Time.deltaTime;
+            strengthPotionCoolDown.text = "" + Convert.ToInt64(strengthPotionSettings.cooldown);
+
+        }
     }
 }

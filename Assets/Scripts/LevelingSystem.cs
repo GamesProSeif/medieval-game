@@ -30,6 +30,16 @@ public class LevelingSystem : MonoBehaviour
 
 
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        FrontxPBar = GameObject.Find("FrontxPBar").GetComponent<Image>();
+        BackxPBar = GameObject.Find("BackxPBar").GetComponent<Image>();
+        Frame = GameObject.Find("FramexP").GetComponent<Image>();
+        backGround = GameObject.Find("ExpBackGround").GetComponent<Image>();
+        lvl = GameObject.Find("level").GetComponent<TextMeshProUGUI>();
+        xp = GameObject.Find("requiredExp").GetComponent<TextMeshProUGUI>();
+    }
     void Start()
     {
         currentxp = 0;

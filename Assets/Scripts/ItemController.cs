@@ -8,9 +8,9 @@ using UnityEngine.UI;
 public class ItemController : MonoBehaviour
 {
     public List<InventoryItem> items = new List<InventoryItem>(); 
-    public RawImage scitmarImage;
-    public RawImage bowImage;
-    public RawImage fireGrenadeImage;
+    public Image scitmarImage;
+    public Image bowImage;
+    public Image fireGrenadeImage;
     public RawImage healthPotionImage;
     public RawImage speedPotionImage;
     public RawImage strengthPotionImage;
@@ -22,16 +22,33 @@ public class ItemController : MonoBehaviour
     public TextMeshProUGUI pickup;
     public SelectionManger selection;
     private ItemController itemCtrl;
+    private GameObject canvas;
 
     private void Awake()
     {
         itemCtrl = GameObject.Find("Player").GetComponent<ItemController>();
+        canvas = GameObject.Find("Canvas");
+        pickup = canvas.transform.Find("pickupOpenDoor").gameObject.GetComponent<TextMeshProUGUI>();
+        scitmarImage = canvas.transform.Find("ScitmarImage").gameObject.GetComponent<Image>();
+        bowImage = canvas.transform.Find("BowImage").gameObject.GetComponent<Image>();
+        fireGrenadeImage = canvas.transform.Find("FireGrenadeImage").gameObject.GetComponent<Image>();
+        arrowAmmoText = canvas.transform.Find("ArrowAmmoText").gameObject.GetComponent<TextMeshProUGUI>();
+        fireGrenadeAmmoText = canvas.transform.Find("FireGrenadeAmmoText").gameObject.GetComponent<TextMeshProUGUI>();
+        healthPotionCount = canvas.transform.Find("HealthPotionCount").gameObject.GetComponent<TextMeshProUGUI>();
+        speedPotionCount = canvas.transform.Find("SpeedPotionCount").gameObject.GetComponent<TextMeshProUGUI>();
+        strengthPotionCount = canvas.transform.Find("StrengthPotionCount").gameObject.GetComponent<TextMeshProUGUI>();
+        healthPotionImage = canvas.transform.Find("HealthPotionImage").gameObject.GetComponent<RawImage>();
+        speedPotionImage = canvas.transform.Find("SpeedPotionImage").gameObject.GetComponent<RawImage>();
+        strengthPotionImage = canvas.transform.Find("StrengthPotionImage").gameObject.GetComponent<RawImage>();
+
+        
     }
 
     private void Update()
     {
-       if (selection.mainSelection != null)
+       if (selection.mainSelection != null && selection.mainSelection.gameObject.tag == "Item")
         {
+            pickup.text = "Press E to pickup";
             pickup.gameObject.SetActive(true);
             if(Input.GetKey(KeyCode.E))
             {
@@ -74,7 +91,6 @@ public class ItemController : MonoBehaviour
         {
             InventoryItem Arrow = itemCtrl.findByName("Arrow");
             arrowAmmoText.text = "" + Arrow.count;
-            Debug.Log(Arrow.count);
 
         }
 

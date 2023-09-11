@@ -34,7 +34,7 @@ public class MeleeEnemy : EnemyBase
             animator.SetBool("isAttacking", false);
 
             // Attack Phase
-            playerStatsController.TakeDamage(Convert.ToInt32(damage * stats.strength), gameObject);
+           // playerStatsController.TakeDamage(Convert.ToInt32(damage * stats.strength), gameObject);
         }
     }
 }

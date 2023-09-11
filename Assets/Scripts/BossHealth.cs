@@ -10,6 +10,7 @@ public class BossHealth : MonoBehaviour
     private float lerpTimer;
     public float chipSpeed = 10f;
     public float waitTimer = 1f;
+    private GameObject canvas;
     public GameObject bossHealth;
     public Image frontHealthBar;
     public Image backHealthBar;
@@ -17,6 +18,15 @@ public class BossHealth : MonoBehaviour
     public Image Frame;
     private StatsController stats;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        canvas = GameObject.Find("Canvas");
+        bossHealth = canvas.transform.Find("BossHealth").gameObject;
+        backGround = bossHealth.transform.Find("HealthBarBackGroundBoss").gameObject.GetComponent<Image>();
+        frontHealthBar = bossHealth.transform.Find("FrontHealthBarBoss").gameObject.GetComponent<Image>();
+        backHealthBar = bossHealth.transform.Find("BackHealthBarBoss").gameObject.GetComponent<Image>();
+        Frame = bossHealth.transform.Find("FrameHealthBoss").gameObject.GetComponent<Image>();
+    }
     void Start()
     {
         bossHealth = GameObject.Find("BossHealth");

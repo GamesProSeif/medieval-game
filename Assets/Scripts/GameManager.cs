@@ -11,10 +11,13 @@ public class GameManager : MonoBehaviour
     private StatsController statsController;
     private PlayerHealth playerHealth;
     private GameObject[] wells;
+    private Scene currentScene;
     
     private bool wellRestoring = false;
     private float elapsed = 0;
-    private static bool GameIsPaused = false;
+    private float elapsed2 = 0;
+    private float elapsed3 = 0;
+    public bool GameIsPaused = false;
     [Header("Settings")]
     public float wellRestoreRadius = 5;
     public float wellRestoreCooldown;
@@ -30,7 +33,23 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI healthpotions;
     public GameObject boss;
     public GameObject Enemies;
+    private GameObject canvas;
     //@TODO: implement settings for global variables (ie: healthPotionMultiplier)
+    private void Awake()
+    {
+        canvas = GameObject.Find("Canvas");
+        gameOverText = canvas.transform.Find("GameWonText").gameObject;
+        pauseMenu = canvas.transform.Find("PauseMenu").gameObject;
+        blackScreen = canvas.transform.Find("BlackScreen").gameObject;
+        animScreen = canvas.transform.Find("BlackScreen").gameObject.GetComponent<Animator>();
+        deathanim = canvas.transform.Find("Death").gameObject.GetComponent<Animator>();
+        deathTip = canvas.transform.Find("DeathTextTip").gameObject.GetComponent<Animator>();
+        _Death = canvas.transform.Find("Death").gameObject.GetComponent<TextMeshProUGUI>();
+        DeathTextTip = canvas.transform.Find("DeathTextTip").gameObject.GetComponent<TextMeshProUGUI>();
+        healthpotions = canvas.transform.Find("HealthPotionCount").gameObject.GetComponent<TextMeshProUGUI>();
+            
+    }
+
 
     private void Start()
     {
@@ -47,6 +66,7 @@ public class GameManager : MonoBehaviour
         animScreen.SetBool("fadeOut", false);
         boss = GameObject.FindGameObjectWithTag("Boss");
         Enemies = GameObject.Find("Enemies");
+        currentScene = SceneManager.GetActiveScene();
 
         AddInventoryItems();
     }
@@ -68,6 +88,29 @@ public class GameManager : MonoBehaviour
                 var colliders = Physics.OverlapSphere(well.transform.position, wellRestoreRadius, whatIsPlayer);
                 if (colliders.Length > 0)
                     WellRestore();
+            }
+
+            if (combatController.noWeaponText.IsActive())
+
+            {
+                if (elapsed2 <= 1f)
+                    elapsed2 += Time.deltaTime;
+                else 
+                { 
+                    elapsed2 = 0f;
+                    combatController.noWeaponText.gameObject.SetActive(false);
+                }
+
+            }
+            if (combatController.noPotionText.IsActive())
+            {
+                if (elapsed3 <= 1f)
+                    elapsed3 += Time.deltaTime;
+                else
+                {
+                    elapsed3 = 0f;
+                    combatController.noPotionText.gameObject.SetActive(false);
+                }    
             }
         }
         else
@@ -148,7 +191,7 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         
-        SceneManager.LoadScene("level 1");
+        SceneManager.LoadScene(currentScene.name);
         blackScreen.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -167,10 +210,11 @@ public class GameManager : MonoBehaviour
     {
         if(boss)
             pauseMenu.SetActive(true);
-        else gameOverText.SetActive(true);
+        else gameOverText.gameObject.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
         EnableCurser();
+        combatController.noWeaponText.gameObject.SetActive(false);
     }
 
 
@@ -210,7 +254,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         GameIsPaused = true;
-        gameOverText.SetActive(true);
+        gameOverText.gameObject.SetActive(true);
         EnableCurser();
         
     }

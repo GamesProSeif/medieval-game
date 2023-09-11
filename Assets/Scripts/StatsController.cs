@@ -65,7 +65,6 @@ public class StatsController : MonoBehaviour
         killed = true;
         if (gameObject.tag == "Player")
         {
-            animator.SetBool("isDead", true);
             FindObjectOfType<AudioManager>().Play("PlayerDeath");
             MovementController moveController = GetComponent<MovementController>();
             CombatController combatController = GetComponent<CombatController>();
@@ -75,11 +74,15 @@ public class StatsController : MonoBehaviour
         else if (gameObject.tag == "Enemy" || gameObject.tag == "Boss" || gameObject.tag == "RangedEnemy" || gameObject.tag == "Melee")
         {
             FindObjectOfType<AudioManager>().Play("PlayerDeath");
-            animator.SetBool("isDead", true);
+            
             Invoke(nameof(destroy), 3);
             if (killedBy.name == "Player")
                 levelingSystem.GainExperienceScalable(xp, level);
         }
+        animator.SetBool("isAttacking", false);
+        animator.SetBool("isMoving", false);
+        animator.SetBool("isHit", false);
+        animator.SetBool("isDead", true);
     }
 
     private void updateHealth(int level)

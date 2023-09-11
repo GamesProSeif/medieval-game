@@ -3060,7 +3060,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Stable Sword Outward Slash
-  m_Speed: 1.7
+  m_Speed: 1.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -8957747211587340895}
@@ -4620,6 +4620,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: isHit
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: isAttacking
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4601928296782979165}
   m_Solo: 0
@@ -5211,7 +5214,7 @@ AnimatorStateMachine:
     m_Position: {x: 2140, y: 720, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4601928296782979165}
-    m_Position: {x: 2800, y: 1380, z: 0}
+    m_Position: {x: 3020, y: 1600, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6015290903183601700}
     m_Position: {x: 2560, y: 920, z: 0}
