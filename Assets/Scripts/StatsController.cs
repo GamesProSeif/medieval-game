@@ -30,6 +30,8 @@ public class StatsController : MonoBehaviour
         levelingSystem = GameObject.Find("Player").GetComponent<LevelingSystem>();
         
     }
+
+   
     
 
     public void TakeDamage(int damage, GameObject damagedBy)
@@ -66,18 +68,17 @@ public class StatsController : MonoBehaviour
         if (gameObject.tag == "Player")
         {
             FindObjectOfType<AudioManager>().Play("PlayerDeath");
-            MovementController moveController = GetComponent<MovementController>();
             CombatController combatController = GetComponent<CombatController>();
-            moveController.enabled = false;
             combatController.enabled = false;
         }
         else if (gameObject.tag == "Enemy" || gameObject.tag == "Boss" || gameObject.tag == "RangedEnemy" || gameObject.tag == "Melee")
         {
             FindObjectOfType<AudioManager>().Play("PlayerDeath");
-            
-            Invoke(nameof(destroy), 3);
+            Invoke(nameof(destroy), 4);
             if (killedBy.name == "Player")
+            {
                 levelingSystem.GainExperienceScalable(xp, level);
+            }
         }
         animator.SetBool("isAttacking", false);
         animator.SetBool("isMoving", false);

@@ -23,7 +23,7 @@ public class MeleeEnemy : EnemyBase
     {
         // Fixed position
         agent.SetDestination(transform.position);
-        transform.LookAt(playerTransform);
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
         animator.SetBool("isAttacking", true);
 
         if (readyToAttack)

@@ -40,6 +40,7 @@ public class ItemController : MonoBehaviour
         healthPotionImage = canvas.transform.Find("HealthPotionImage").gameObject.GetComponent<RawImage>();
         speedPotionImage = canvas.transform.Find("SpeedPotionImage").gameObject.GetComponent<RawImage>();
         strengthPotionImage = canvas.transform.Find("StrengthPotionImage").gameObject.GetComponent<RawImage>();
+        selection = GameObject.Find("SelectionManager").gameObject.GetComponent<SelectionManger>();
 
         
     }

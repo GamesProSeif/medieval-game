@@ -3,20 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
 
 public class DoorScript : MonoBehaviour
 {   
     private Animator anim;
     private float timeElapsed;
     private SelectionManger selection;
-    private Transform openDoorText;
+    private TextMeshProUGUI openDoorText;
     private GameObject canvas;
 
     private void Awake()
     {
         canvas = GameObject.Find("Canvas");
-        openDoorText = canvas.transform.Find("pickupOpenDoor");
+        openDoorText = canvas.transform.Find("pickupOpenDoor").gameObject.GetComponent<TextMeshProUGUI>();
     }
 
     private void Start()
@@ -40,14 +39,18 @@ public class DoorScript : MonoBehaviour
                 timeElapsed = 0;
             }
         }
+        if(selection.mainSelection != null && selection.mainSelection.gameObject.tag == "Door")
+        {
+            openDoorText.gameObject.GetComponent<TextMeshProUGUI>().text = "Press E to Open Door";
+            openDoorText.gameObject.SetActive(true);
+        }
     }
 
 
 
     private void openDoor()
     {
-        openDoorText.gameObject.GetComponent<TextMeshProUGUI>().text = "Press E to Open Door";
-        openDoorText.gameObject.SetActive(true);
+        
         if (selection.mainSelection != null && selection.mainSelection.gameObject.tag == "Door")
         {
 
