@@ -12,6 +12,8 @@
 
 
 Update 0.1.5 patchnotes:
+
+
 1- fixed bug with EXP on the new sword script
 2- player now checks ground with raycasts which makes it safer and doesnt make the player climb walls (supposedly)
 3- new methods:
