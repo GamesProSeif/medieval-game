@@ -75,6 +75,7 @@ public class StatsController : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().Play("PlayerDeath");
             Invoke(nameof(destroy), 4);
+            Debug.Log(killedBy.gameObject.name);
             if (killedBy.name == "Player")
             {
                 levelingSystem.GainExperienceScalable(xp, level);

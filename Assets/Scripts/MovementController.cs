@@ -356,7 +356,6 @@ public class MovementController : MonoBehaviour
         if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(-Vector3.up), out hitLower, 3f, ~ignoreMe))
         {
             
-            Debug.Log(stepRayLower.transform.position.y - hitLower.point.y);
             if (isGrounded && (stepRayLower.transform.position.y - hitLower.point.y - offset <= maxStepHeight))
             {
                 Vector3 targetVector = new Vector3(rb.position.x, hitLower.point.y, rb.position.z);

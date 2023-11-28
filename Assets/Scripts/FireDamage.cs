@@ -40,7 +40,7 @@ public class FireDamage : MonoBehaviour
                     StatsController gameObjectStats = _object.GetComponent<StatsController>();
                     gameObjectStats.TakeDamage(
                         Convert.ToInt32(playerCombatController.fireGrenadeSettings.damage * playerStats.strength),
-                        _object);
+                        playerStats.gameObject);
                 } catch { }
             }
             damageElapsedTime = 0;

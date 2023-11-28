@@ -897,9 +897,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: currentWeaponNone
-    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: isAttacking
     m_EventTreshold: 0
@@ -5280,7 +5277,7 @@ AnimatorStateMachine:
     m_Position: {x: 430, y: 2100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4702641561757048482}
-    m_Position: {x: -1270, y: 2030, z: 0}
+    m_Position: {x: -1170, y: 2110, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

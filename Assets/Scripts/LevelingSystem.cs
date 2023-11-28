@@ -139,7 +139,7 @@ public class LevelingSystem : MonoBehaviour
         GetComponent<PlayerHealth>().IncreaseHealth(level);
         requiredxp = CalculateRequiredXp();
         lvl.text = "level " + level;
-        stats.strength += 0.15f * level;
+        stats.strength += 0.09f * level;
     }
     private int CalculateRequiredXp()
     {

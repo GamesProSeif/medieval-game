@@ -43,7 +43,7 @@ public class SwordScript : MonoBehaviour
                 combatController.readyToAttack = false;
                 
             }
-            else if (statsController.gameObject.tag == "Enemy" && other.tag != statsController.gameObject.tag)
+            else if (statsController.gameObject.tag == "Enemy" || statsController.gameObject.tag == "Melee" && other.tag != statsController.gameObject.tag)
             {
                 other.gameObject.GetComponent<StatsController>().TakeDamage(Convert.ToInt32(statsController.gameObject.GetComponent<MeleeEnemy>().damage * statsController.strength), statsController.gameObject);
                 
