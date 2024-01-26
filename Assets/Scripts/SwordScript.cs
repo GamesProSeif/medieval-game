@@ -10,7 +10,6 @@ public class SwordScript : MonoBehaviour
     private StatsController statsController;
     private Animator animator;
     private bool hit = false;
-    private float damageDone = 0;
     // Start is called before the first frame update
     void Awake()
     {

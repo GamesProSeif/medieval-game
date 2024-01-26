@@ -46,8 +46,8 @@ public class AudioManager : MonoBehaviour
                 Stop("BossFightMusic");
                 Play("MainMenuMusic");
                 break;
-            case "level 1":
-                if (currentScene == "level 1")
+            case "Level 1":
+                if (currentScene == "Level 1")
                     break;
                 Stop("MainMenuMusic");
                 Play("BossFightMusic");
