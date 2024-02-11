@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1711174193}
-  m_IndirectSpecularColor: {r: 0.43697876, g: 0.48465854, b: 0.5649196, a: 1}
+  m_IndirectSpecularColor: {r: 0.43697858, g: 0.48465812, b: 0.56491894, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -14459,67 +14459,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &1014285949
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1014285951}
-  - component: {fileID: 1014285950}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1014285950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1014285949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc512f67444a9ed4d844ccc17fbfae90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameIsPaused: 0
-  wellRestoreRadius: 5
-  wellRestoreCooldown: 10
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 64
-  gameOverText: {fileID: 0}
-  pauseMenu: {fileID: 0}
-  blackScreen: {fileID: 0}
-  animScreen: {fileID: 0}
-  deathanim: {fileID: 0}
-  deathTip: {fileID: 0}
-  _Death: {fileID: 0}
-  DeathTextTip: {fileID: 0}
-  healthpotions: {fileID: 0}
-  boss: {fileID: 0}
-  Enemies: {fileID: 0}
---- !u!4 &1014285951
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1014285949}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 465.38452, y: 38.795803, z: 308.45215}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1014776227
 GameObject:
   m_ObjectHideFlags: 0
@@ -17177,7 +17116,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1195273191
 PrefabInstance:
@@ -19052,7 +18991,7 @@ Transform:
   - {fileID: 1893380236}
   - {fileID: 1107122389}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1390599258 stripped
 Transform:
@@ -19213,7 +19152,7 @@ Transform:
   - {fileID: 783469357}
   - {fileID: 787652843}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1409346387
 PrefabInstance:

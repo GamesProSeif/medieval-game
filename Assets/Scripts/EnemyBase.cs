@@ -74,6 +74,8 @@ public abstract class EnemyBase : MonoBehaviour
         {
             ResetAttack();
         }
+        if (gameObject.tag == "Enemy")
+            Debug.Log(animator.GetBool("isAttacking"));
     }
 
     protected abstract void Idle();
